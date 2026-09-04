@@ -4,8 +4,8 @@
 csv/
 
 # Salidas de la limpieza (notebook 02). Se regeneran igual que los CSV.
-maestro_personas.csv
-plazas.csv
+maestro_personas.*
+plazas.*
 output/
 
 # Los .parquet SI se versionan: son la fuente original y no se pueden regenerar.

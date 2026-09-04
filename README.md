@@ -142,7 +142,7 @@ tratamiento. La limpieza va en un segundo notebook, con las decisiones ya tomada
 
 Toma los cuatro `.parquet` crudos y produce **`maestro_personas.parquet`** (15 MB, el formato
 de trabajo) y **`maestro_personas.csv`** (195 MB, para abrir en Excel): **674.546 filas, una por
-persona, 54 columnas**.
+persona, 56 columnas**.
 
 **Nada se borra.** Todos los problemas detectados se marcan con banderas booleanas en lugar de
 eliminar filas, así cada analista decide si filtra y el criterio queda explícito en el código
@@ -177,6 +177,54 @@ personas**.
 edades internamente consistentes (100 → 101 → 102) pero implausibles, y sin un segundo período
 con qué contrastarlas no hay forma de saber si son reales. Se conserva `edad_original` y quedan
 las banderas `edad_corregida_por_tipeo` y `edad_topeada`.
+
+### Fuentes externas: población y competencia
+
+Dos columnas que no vienen de Equifax y se pegan a nivel plaza, así que todas las personas de
+un mismo `cp` comparten el valor.
+
+**`cantidad_habitantes_cp`** — población del Censo 2022, de
+`fuentes_externas/censo_2022_poblacion/poblacion_por_cp.csv`. Ese archivo trae una columna
+`metodo` que documenta cómo se estimó cada valor (departamento completo, localidad censal, o
+reparto proporcional entre barrios en CABA). Las 47 plazas suman **12.477.195 habitantes**.
+
+**`cantidad_competidores`** — sucursales de la competencia dentro de cada plaza, desde
+`Locaciones competidor.xlsx`, que solo trae `id_locacion`, `latitud` y `longitud`. Las siete
+coordenadas se geocodificaron una por una contra Nominatim/OpenStreetMap; el resultado quedó
+fijo dentro del notebook para que corra sin conexión.
+
+El empalme se hace **por ciudad, no por código exacto**. El sistema CPA moderno subdivide las
+ciudades grandes —Córdoba capital usa 5000, 5001, 5002— mientras que el dataset tiene un único
+código por plaza. Un competidor en Alta Córdoba tiene CPA 5001 pero está dentro de la plaza
+5000, que agrupa a toda la ciudad, así que suma. El que cayó en Mendoza no, porque Mendoza no
+es una de las 47 plazas. Resultado: **6 de 7 competidores contados, en 5 plazas**.
+
+Las plazas sin competencia quedan en **0, no en nulo**: el cero es información y un nulo
+rompería cualquier promedio.
+
+### El hallazgo que habilita la población
+
+**La penetración de la muestra va de 1,1% a 31,5% según la plaza.** No es pareja ni cerca: la
+mediana es 4,4% y el máximo es veintiocho veces el mínimo.
+
+| CP | En la muestra | Habitantes | Penetración |
+|---|---|---|---|
+| 1828 | 19.210 | 61.072 | **31,5%** |
+| 1425 | 24.311 | 81.349 | 29,9% |
+| 2300 | 2.090 | 190.577 | 1,1% |
+| 1763 | 2.202 | 207.478 | **1,1%** |
+
+Por tamaño de muestra, el CP 1828 parece nueve veces más grande que el 1763. Por población
+real, el 1763 es tres veces y media más grande que el 1828.
+
+**41 de las 47 plazas cambian de puesto** al rankear por población en lugar de por muestra. El
+CP 1425 cae del puesto 8 al 36; el 1828, del 15 al 42. La correlación de rangos entre ambos
+criterios es +0,771: alta, pero muy lejos de 1.
+
+Conclusión operativa: **rankear plazas por cantidad de personas en el dataset está mal**. El
+tamaño de mercado se calcula sobre la población, y la muestra sirve para estimar tasas —
+porcentaje bancarizado, porcentaje que pidió crédito, mix de ingreso— que después se aplican a
+esa población.
 
 ### Los dos "score" no son lo mismo
 

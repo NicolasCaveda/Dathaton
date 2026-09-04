@@ -1,16 +1,35 @@
-# ---- Datos derivados -------------------------------------------------------
-# Los CSV los regenera el notebook 01 a partir de los .parquet. Son 172 MB y no
-# aportan nada al repo: cada uno los produce en su maquina corriendo Run All.
-csv/
+# =============================================================================
+#  .gitignore  ·  Datathon Kredo
+#  Regla general: se versiona lo que NO se puede regenerar (datos crudos,
+#  notebooks, documentacion) y se ignora todo lo derivado o pesado.
+# =============================================================================
 
-# Salidas de la limpieza (notebook 02). Se regeneran igual que los CSV.
+# ---- Datos derivados --------------------------------------------------------
+# Los regeneran los notebooks a partir de los .parquet crudos. No aportan nada
+# al repo y pesan cientos de MB: cada uno los produce con un Run All.
+csv/
 maestro_personas.*
 plazas.*
 output/
+*.tmp
+*.bak
 
-# Los .parquet SI se versionan: son la fuente original y no se pueden regenerar.
+# Los .parquet originales SI se versionan: son la fuente y no se regeneran.
+# Las fuentes externas (censo, competidores) TAMBIEN: sin ellas el pipeline
+# no corre en otra maquina.
 
-# ---- Python ----------------------------------------------------------------
+# ---- Power BI ---------------------------------------------------------------
+# El .pbix pesa ~82 MB y cada version nueva suma otros 82 MB al historial para
+# siempre. Se comparte por Drive, no por git. Si el equipo decide versionarlo,
+# comentar la linea de abajo y usar Git LFS.
+*.pbix
+*.pbix.zip
+
+# Carpeta que queda si Windows descomprime el .pbix como si fuera un ZIP.
+# Es una copia del contenido del tablero: no sirve para nada.
+_tablero_extraido/
+
+# ---- Python -----------------------------------------------------------------
 __pycache__/
 *.py[cod]
 .venv/
@@ -18,11 +37,21 @@ venv/
 env/
 .python-version
 
-# ---- Jupyter ---------------------------------------------------------------
+# ---- Jupyter ----------------------------------------------------------------
 .ipynb_checkpoints/
 *-checkpoint.ipynb
 
-# ---- Editores y sistema ----------------------------------------------------
+# ---- Office -----------------------------------------------------------------
+# Archivos de bloqueo que Excel y Word crean al abrir un archivo.
+~$*
+.~lock.*
+
+# ---- Credenciales -----------------------------------------------------------
+.env
+*.key
+credentials.json
+
+# ---- Editores y sistema -----------------------------------------------------
 .vscode/
 .idea/
 .DS_Store

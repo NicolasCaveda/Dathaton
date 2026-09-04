@@ -1,0 +1,30 @@
+# ---- Datos derivados -------------------------------------------------------
+# Los CSV los regenera el notebook 01 a partir de los .parquet. Son 172 MB y no
+# aportan nada al repo: cada uno los produce en su maquina corriendo Run All.
+csv/
+
+# Salidas de la limpieza (notebook 02). Se regeneran igual que los CSV.
+maestro_personas.csv
+plazas.csv
+output/
+
+# Los .parquet SI se versionan: son la fuente original y no se pueden regenerar.
+
+# ---- Python ----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.python-version
+
+# ---- Jupyter ---------------------------------------------------------------
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# ---- Editores y sistema ----------------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

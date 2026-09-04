@@ -1,0 +1,280 @@
+<title>Los Diez Minutos, Palabra por Palabra</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#080C11; --surface:#111823; --surface-2:#18212E; --surface-3:#202B3A;
+    --ink:#E8EFF6; --ink-2:#95A7B9; --ink-3:#657789;
+    --rule:#222E3D; --rule-2:#31404F;
+    --ui:#57BFE0; --ui-dim:#2694BA; --act:#C4862F;
+    --ok:#3FA97A; --crit:#C4544B;
+    --display:"Sora","Helvetica Neue",Arial,sans-serif;
+    --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+    --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg); color:var(--ink); font-family:var(--body); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px; margin:0 auto; padding:0 24px 90px}
+  h1,h2,h3,h4{font-family:var(--display); margin:0; text-wrap:balance}
+  p{margin:0}
+  code{font-family:var(--mono); font-size:.87em; background:var(--surface-2); padding:1px 5px; border-radius:3px}
+  :focus-visible{outline:2px solid var(--ui); outline-offset:2px}
+
+  header{padding:58px 0 34px; border-bottom:1px solid var(--rule)}
+  .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ui); margin-bottom:16px}
+  header h1{font-size:clamp(32px,5.4vw,54px); font-weight:700; line-height:1.03; letter-spacing:-.028em}
+  header .sub{margin-top:18px; font-size:18px; color:var(--ink-2); max-width:62ch}
+
+  .roles{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:7px; overflow:hidden; margin-top:30px}
+  .role{background:var(--surface); padding:16px 18px}
+  .role .r{font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ui)}
+  .role .w{font-family:var(--display); font-size:17px; font-weight:600; margin-top:5px}
+  .role .d{font-size:13.5px; color:var(--ink-2); margin-top:5px}
+
+  section{padding:38px 0; border-bottom:1px solid var(--rule)}
+  .beat{display:grid; grid-template-columns:96px 1fr; gap:26px; align-items:start}
+  @media(max-width:700px){ .beat{grid-template-columns:1fr; gap:12px} }
+  .clock{position:sticky; top:18px}
+  .clock .t{font-family:var(--mono); font-size:20px; font-weight:600; color:var(--ui); font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+  .clock .dur{font-family:var(--mono); font-size:11px; color:var(--ink-3); margin-top:3px}
+  .clock .who{display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; background:var(--surface-3); color:var(--ink-2); border-radius:100px; padding:3px 9px; margin-top:9px}
+
+  .beat h2{font-size:24px; font-weight:600; letter-spacing:-.018em; line-height:1.15}
+  .where{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--act); margin-bottom:9px}
+  .do{background:var(--surface-2); border-left:2px solid var(--ui-dim); border-radius:0 6px 6px 0; padding:11px 15px; margin:14px 0; font-size:14px; color:var(--ink-2)}
+  .do b{color:var(--ui); font-weight:600; font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; display:block; margin-bottom:4px}
+  .say{margin-top:14px; padding-left:17px; border-left:3px solid var(--rule-2)}
+  .say p{font-size:17px; line-height:1.62; color:var(--ink)}
+  .say p + p{margin-top:13px}
+  .say em{font-style:normal; color:var(--ui); font-weight:600}
+  .say .pause{display:block; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:11px 0}
+  .pase{margin-top:18px; background:var(--surface-2); border:1px dashed var(--rule-2); border-radius:7px; padding:13px 16px}
+  .pase b{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--act); margin-bottom:6px}
+  .pase p{font-size:15.5px; color:var(--ink)}
+  .tip{font-size:13.5px; color:var(--ink-3); margin-top:14px; font-style:italic}
+
+  .live{background:linear-gradient(90deg,rgba(38,148,186,.16),transparent); border:1px solid var(--ui-dim); border-radius:7px; padding:14px 17px; margin:16px 0}
+  .live b{color:var(--ui); font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; display:block; margin-bottom:5px}
+  .live p{font-size:14.5px; color:var(--ink-2)}
+
+  .qa{display:flex; flex-direction:column; gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:7px; overflow:hidden; margin-top:22px}
+  .q{background:var(--surface); padding:15px 18px}
+  .q .qq{font-size:15px; font-weight:600; margin-bottom:6px}
+  .q .aa{font-size:14.5px; color:var(--ink-2)}
+  .q .aa b{color:var(--ink); font-weight:600}
+
+  .no{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:11px; margin-top:20px}
+  .nn{background:var(--surface); border:1px solid var(--rule); border-top:2px solid var(--crit); border-radius:6px; padding:13px 15px}
+  .nn h4{font-size:14.5px; font-weight:600; margin-bottom:4px}
+  .nn p{font-size:13.5px; color:var(--ink-2)}
+
+  h2.big{font-size:28px; font-weight:600; letter-spacing:-.02em; margin-bottom:6px}
+  .lede{font-size:16px; color:var(--ink-2); max-width:70ch}
+  .total{font-family:var(--mono); font-size:12.5px; color:var(--ink-3); text-align:right; margin-top:6px}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Datathon UCU · ITBA — Sábado, ronda 1 y final</div>
+  <h1>Los diez minutos,<br>palabra por palabra</h1>
+  <p class="sub">Guion para presentar el reporte interactivo, repartido entre las cinco personas del equipo. Cada bloque dice quién habla, dónde estar en la página, qué hacer y qué decir. Las frases están escritas para leerse en voz alta: cambiálas hasta que suenen a ustedes, pero mantené los tiempos.</p>
+  <div class="roles">
+    <div class="role"><div class="r">Persona 1 · 0:00</div><div class="w">La apertura</div><div class="d">La recomendación completa, antes de cualquier contexto. Es el minuto que fija el rumbo.</div></div>
+    <div class="role"><div class="r">Persona 2 · Actos I y II</div><div class="w">Los datos</div><div class="d">El terreno y el punto ciego. Es quien compra la credibilidad del resto.</div></div>
+    <div class="role"><div class="r">Persona 3 · Actos III y IV</div><div class="w">El método</div><div class="d">El índice y el mapa. Maneja el único momento interactivo de los diez minutos.</div></div>
+    <div class="role"><div class="r">Persona 4 · Actos V y VI</div><div class="w">La decisión</div><div class="d">Las seis plazas, el producto y el plan a doce meses con sus gates.</div></div>
+    <div class="role"><div class="r">Persona 5 · 9:15</div><div class="w">El cierre</div><div class="d">Riesgo principal y vuelta a la frase inicial. Después conduce las preguntas.</div></div>
+  </div>
+  <div class="pase" style="margin-top:18px"><b>Cómo se maneja la página</b><p>Cada uno scrollea lo suyo mientras habla: con cinco voces, un piloto aparte agrega una coordinación que no hace falta. El único bloque con controles es el Acto III, y lo mueve la misma Persona 3 que lo está explicando.</p></div>
+</header>
+
+<section>
+  <div class="beat">
+    <div class="clock"><div class="t">0:00</div><div class="dur">60 seg</div><div class="who">Persona 1</div></div>
+    <div>
+      <div class="where">Portada · el titular</div>
+      <h2>La respuesta antes que el contexto</h2>
+      <div class="do"><b>En pantalla</b>Página arriba de todo, sin scrollear. Los cuatro números de la portada visibles.</div>
+      <div class="say">
+        <p>Buen día. Kredo entra a Argentina y la pregunta era dónde abrir. Vamos con la respuesta primero.</p>
+        <p><em>Seis sucursales en doce meses. Empezamos por Córdoba en el mes 1, seguimos por Rosario en el mes 3.</em> Después Neuquén, Santa Fe, Tucumán y Salta.</p>
+        <p>Seis y no diez, porque Kredo nunca operó una sucursal física y el préstamo prendario obliga a montar inspección de vehículos, verificación documental y firma de garantía. La restricción no es el mapa, es la capacidad de ejecución.</p>
+        <p>Esas seis plazas cubren el 42% del mercado direccionable de las 47 candidatas, con el 13% de las plazas.</p>
+        <span class="pause">— pausa —</span>
+        <p>Ahora, cómo llegamos ahí. Y por qué el ranking obvio nos daba mal.</p>
+      </div>
+      <div class="pase"><b>Pase a Persona 2</b><p>«Ahora, cómo llegamos ahí. Y por qué el ranking obvio nos daba mal.» — es la última frase de arriba: decila mirando a quien sigue, no al jurado.</p></div>
+      <p class="tip">No digas quién sos, no cuentes qué es Kredo, no expliques el dataset. El jurado leyó el caso.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="beat">
+    <div class="clock"><div class="t">1:00</div><div class="dur">75 seg</div><div class="who">Persona 2</div></div>
+    <div>
+      <div class="where">Acto I · El terreno</div>
+      <h2>El dataset no es el mercado</h2>
+      <div class="do"><b>En pantalla</b>Scroll hasta el gráfico de penetración. Dejalo quieto: se lee solo.</div>
+      <div class="say">
+        <p>Las 47 plazas suman doce millones y medio de habitantes. La muestra de Equifax cubre 674 mil personas: el 5,4%. Hasta ahí, normal.</p>
+        <p>El problema es que esa cobertura <em>no es pareja</em>. Va del 1,1% al 31,5% según la plaza.</p>
+        <p>Miren dos casos. Banfield aporta 19.210 personas sobre 61.072 habitantes. Virrey del Pino aporta 2.202 sobre 207.478.</p>
+        <p>Por tamaño de muestra, Banfield parece nueve veces más grande. <em>Por población real, Virrey del Pino es tres veces y media más grande.</em></p>
+        <p>Contar filas del dataset no es una simplificación: es medir otro país. Todo lo que viene usa población del censo para el tamaño, y la muestra solo para estimar tasas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="beat">
+    <div class="clock"><div class="t">2:15</div><div class="dur">90 seg</div><div class="who">Persona 2</div></div>
+    <div>
+      <div class="where">Acto II · El punto ciego</div>
+      <h2>Lo que falta, falta por localidad</h2>
+      <div class="do"><b>En pantalla</b>Scroll hasta la matriz de cobertura. Que se vea entera, con los rojos alineados.</div>
+      <div class="say">
+        <p>Esto es cobertura de datos. Cada columna es una plaza, cada fila un bloque de variables: ingreso, laboral, score. Verde hay dato, rojo no hay.</p>
+        <p>Lo importante es la forma. No hay degradé: o la plaza tiene el bloque completo al 99,8%, o no lo tiene, con 0,4%. Nada en el medio.</p>
+        <p>Eso no habla de la gente. Habla de qué fuentes usó Equifax en cada territorio.</p>
+        <span class="pause">— pausa, dejar que lo miren —</span>
+        <p><em>Solo 29 de las 47 plazas tienen los tres bloques.</em> Y las incompletas no son marginales: Tucumán, La Plata, Salta y Palermo están entre las más grandes.</p>
+        <p>Por qué esto rompe un ranking. Si armás un índice que promedia ingreso, laboral y score, el ingreso de Tucumán se calcula sobre 175 personas de 39.258. Y no salta ningún error, ningún nulo, ninguna alerta. Sale un número presentable.</p>
+        <p>Fuimos a ver quiénes son esos 175. <em>No son una muestra chica: son una muestra sesgada.</em> Piden doce puntos menos de crédito que el resto de su plaza.</p>
+        <p>Y lo peor: mirando el ranking final es imposible distinguir una caída legítima de un artefacto de cobertura.</p>
+      </div>
+      <div class="pase"><b>Pase a Persona 3</b><p>«Con ese problema sobre la mesa, el índice que armamos hace una cosa distinta.»</p></div>
+      <p class="tip">Este es el bloque que compra credibilidad para todo lo que sigue. No lo apures.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="beat">
+    <div class="clock"><div class="t">3:45</div><div class="dur">105 seg</div><div class="who">Persona 3</div></div>
+    <div>
+      <div class="where">Acto III · El método</div>
+      <h2>Un índice que sabe lo que no sabe</h2>
+      <div class="do"><b>En pantalla</b>Scroll al panel de pesos. Esperá la señal antes de tocar nada.</div>
+      <div class="say">
+        <p>Cinco dimensiones: tamaño de mercado, demanda activa, calidad de cartera, poder adquisitivo y aire competitivo. Los pesos son un juicio de negocio, no salen de los datos.</p>
+        <p>La parte que resuelve el problema anterior: para cada plaza el índice promedia <em>solo las dimensiones que esa plaza tiene medidas</em>, y guarda qué proporción del criterio pudo usar. A eso le llamamos confianza.</p>
+        <p>Miren Tucumán. Sale primera, con 68% de confianza. No está mal medida: está medida sobre dos tercios del criterio, y lo decimos en vez de esconderlo.</p>
+        <span class="pause">— acá arranca lo interactivo —</span>
+      </div>
+      <div class="live"><b>Momento en vivo</b><p>Mové el deslizador de <i>Tamaño de mercado</i> de 30 hasta 55, despacio. Volvelo a 30. Después subí <i>Demanda activa</i> a 55 y volvé. Un movimiento por vez, tres segundos cada uno.</p></div>
+      <div class="say">
+        <p>Los pesos no están fijos. Muévanlos.</p>
+        <p>Si priorizamos tamaño, Córdoba pasa al frente. Si priorizamos demanda, sube Tucumán. El orden interno cambia, y está bien que cambie.</p>
+        <p><em>Lo que no cambia es el conjunto.</em> Probamos cinco escenarios distintos, incluido uno que usa solo las variables disponibles en las 47 plazas. Tucumán, Neuquén y Rosario entran al top seis en los cinco. Córdoba, en cuatro de cinco.</p>
+        <p>La defensa no es que estos pesos sean los correctos. Es que la recomendación no depende de haber elegido bien los pesos.</p>
+      </div>
+      <p class="tip">Ensayá este bloque diez veces. Es el que más impacta y el único donde se puede trabar la demo.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="beat">
+    <div class="clock"><div class="t">5:30</div><div class="dur">60 seg</div><div class="who">Persona 3</div></div>
+    <div>
+      <div class="where">Acto IV · El mapa de decisión</div>
+      <h2>Demanda contra calidad</h2>
+      <div class="do"><b>En pantalla</b>Scroll al scatter. A mitad del bloque, tocá <i>Solo interior</i>. Nada más.</div>
+      <div class="say">
+        <p>Cada punto es una plaza. A la derecha, mercados con hambre de crédito. Arriba, mercados con buen perfil de riesgo. El tamaño es la población.</p>
+        <p>Lo primero que hay que ver es lo que <em>no</em> está: la esquina superior derecha está vacía. No existe la plaza que sea a la vez muy demandante y muy buena. Ese es el negocio a resolver.</p>
+        <p>Palermo, arriba a la izquierda, tiene la mejor cartera del país y casi nada de apetito de crédito. Resistencia y La Rioja están abajo a la derecha: mucha demanda, perfil flojo.</p>
+        <p>Dos plazas no están en este gráfico, y es a propósito: no tienen dato de score. Ubicarlas en el eje vertical sería inventarles un valor.</p>
+      </div>
+      <div class="pase"><b>Pase a Persona 4</b><p>«Con todo esto sobre la mesa, esta es la recomendación.»</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="beat">
+    <div class="clock"><div class="t">6:30</div><div class="dur">90 seg</div><div class="who">Persona 4</div></div>
+    <div>
+      <div class="where">Acto V · La recomendación</div>
+      <h2>Seis plazas, dos productos</h2>
+      <div class="do"><b>En pantalla</b>Scroll a las seis tarjetas. Después bajá a la tabla de asignación de producto.</div>
+      <div class="say">
+        <p>El corte: entran las plazas con más de 150 mil personas de mercado direccionable y mejor posición en el índice. Son estas seis.</p>
+        <p>Y ninguna está en el AMBA. El área metropolitana concentra 29 de las 47 plazas pero solo el 29% de la población. Partida en códigos postales, ninguna pieza alcanza el piso. <em>Tratarla como una sola plaza metropolitana la convertiría en la más grande del país</em> — es una decisión legítima, y la dejamos explícita en vez de esconderla.</p>
+        <p>El producto no lo elegimos por intuición. El prendario necesita recibo de sueldo y garantía, así que pedimos dos condiciones: ingreso alto y empleo registrado por encima del promedio de la muestra.</p>
+        <p>Córdoba y Rosario cumplen las dos: van con prendario y personal. Neuquén cumple la de ingreso, con el mejor 26,1% de las seis, pero es plaza ciega en el bloque laboral, así que el fit se apoya en una sola pata. Santa Fe, Tucumán y Salta no califican: van con personal de monto bajo.</p>
+        <p>Solo tres de las seis tienen evidencia completa para decidir el producto. Eso también condiciona el orden.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="beat">
+    <div class="clock"><div class="t">8:00</div><div class="dur">75 seg</div><div class="who">Persona 4</div></div>
+    <div>
+      <div class="where">Acto VI · El plan</div>
+      <h2>Tres olas con freno</h2>
+      <div class="do"><b>En pantalla</b>Scroll a las tres olas. Que se vean las tres a la vez si entra en pantalla.</div>
+      <div class="say">
+        <p>El orden no sigue al índice, y es deliberado.</p>
+        <p>Ola 1, meses 1 a 4: Córdoba y Rosario. Son los mercados más grandes, tienen los tres bloques de datos completos y sirven de piloto operativo para el prendario, que es el trámite difícil de montar. <em>La ola 1 prioriza certeza sobre puntaje.</em></p>
+        <p>Ola 2, meses 5 a 8: Neuquén y Santa Fe. Solo si la ola 1 pasa el gate del mes 6: activaciones por sucursal en el umbral y mora temprana a 90 días por debajo del techo.</p>
+        <p>Ola 3, meses 9 a 12: Tucumán y Salta. <em>Tucumán lidera el índice y va última.</em> No es un descuido: es la plaza que peor podemos medir, y entra recién cuando tengamos de Equifax los datos de ingreso y score que hoy faltan.</p>
+        <p>Y si la ola 1 no llega, no se abre la ola 2: se reasigna a canal digital en esas mismas plazas y se revisa si el problema es la plaza o el modelo de sucursal. El plan tiene freno.</p>
+      </div>
+      <div class="pase"><b>Pase a Persona 5</b><p>«Cerramos con el riesgo principal y volvemos al principio.»</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="beat">
+    <div class="clock"><div class="t">9:15</div><div class="dur">45 seg</div><div class="who">Persona 5</div></div>
+    <div>
+      <div class="where">Cierre</div>
+      <h2>Volver a la primera frase</h2>
+      <div class="do"><b>En pantalla</b>Scroll al cierre, o volvé arriba de todo. Que se vea el titular otra vez.</div>
+      <div class="say">
+        <p>El riesgo principal no es elegir mal la plaza. Es que <em>el 26,7% de este mercado no tiene historial crediticio</em> y el modelo de riesgo de Kredo está calibrado en otros países. Por eso el plan arranca con dos aperturas y no con seis.</p>
+        <p>A favor: 42 de las 47 plazas no tienen ningún competidor en los datos que recibimos. El territorio está abierto.</p>
+        <span class="pause">— bajar el ritmo, mirar al jurado —</span>
+        <p><em>Seis sucursales en doce meses. Empezamos por Córdoba en el mes 1, seguimos por Rosario en el mes 3.</em> Después Neuquén, Santa Fe, Tucumán y Salta.</p>
+        <p>Gracias.</p>
+      </div>
+      <p class="tip">Es la misma frase del minuto cero, palabra por palabra. Cerrar el círculo se recuerda.</p>
+      <div class="total">Total: 10:00</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="big">Preguntas que van a hacer</h2>
+  <p class="lede">Contestadas en una frase. Si necesitás más, abrí el comparador.</p>
+  <div class="qa">
+    <div class="q"><div class="qq">¿Por qué no abren en Buenos Aires?</div><div class="aa">Porque el AMBA está partido en 29 códigos postales y ninguno llega al piso de mercado por separado. Si lo tratáramos como una sola plaza sería la más grande del país — lo dejamos explícito como decisión, no como olvido.</div></div>
+    <div class="q"><div class="qq">¿De dónde salen los pesos del índice?</div><div class="aa">Son un juicio de negocio, no salen de los datos. Por eso están puestos como deslizadores: <b>lo que defendemos no es la ponderación, es que el resultado no depende de ella.</b></div></div>
+    <div class="q"><div class="qq">¿Qué es exactamente el mercado direccionable?</div><div class="aa">Población del censo por la tasa de gente que pidió financiamiento en 12 meses. <b>No es un mercado direccionable en sentido estricto</b>: sirve para comparar plazas entre sí, no para proyectar clientes ni calcular breakeven.</div></div>
+    <div class="q"><div class="qq">¿Por qué Tucumán primera en el índice y última en el plan?</div><div class="aa">Porque el índice mide atractivo y el plan gestiona riesgo. Es la plaza con más demanda y la que peor podemos medir: entra cuando tengamos los datos que faltan.</div></div>
+    <div class="q"><div class="qq">¿Y si los datos que faltan nunca llegan?</div><div class="aa">La ola 3 es contingente. Se abre solo Tucumán con un piloto de menor escala y Salta queda para el año siguiente.</div></div>
+    <div class="q"><div class="qq">¿Por qué descartaron variables?</div><div class="aa">Dos por falta de señal. La distancia al polo comercial es una uniforme entre 0 y 5 km, idéntica en las 47 plazas. Y el segmento de comportamiento retail se reparte 25/25/25/25 sin relación con el ingreso: está asignado al azar.</div></div>
+    <div class="q"><div class="qq">¿Por qué seis y no diez?</div><div class="aa">Capacidad de ejecución. Es la primera red física de una empresa 100% digital y el prendario exige montar operación en cada plaza. Con diez el riesgo deja de ser comercial y pasa a ser operativo.</div></div>
+    <div class="q"><div class="qq">¿Cómo trataron los datos sucios?</div><div class="aa">No borramos ninguna fila: marcamos con banderas. Duplicados, edades imposibles corregidas contra los otros períodos de la misma persona, dos codificaciones distintas del score unificadas. Está todo en el notebook.</div></div>
+  </div>
+</section>
+
+<section style="border-bottom:0">
+  <h2 class="big">Lo que no hay que hacer</h2>
+  <div class="no">
+    <div class="nn"><h4>Leer la pantalla</h4><p>Si el número está en la página, no lo repitas: decí qué significa.</p></div>
+    <div class="nn"><h4>Improvisar con los controles</h4><p>Un solo momento interactivo, el del minuto 3:45, ensayado. El resto es scroll.</p></div>
+    <div class="nn"><h4>Empezar por el contexto</h4><p>«Kredo es una fintech fundada en 2019» quema noventa de los seiscientos segundos.</p></div>
+    <div class="nn"><h4>Pedir disculpas por los datos</h4><p>Las plazas ciegas no son una limitación que confesar: son el hallazgo que los diferencia.</p></div>
+    <div class="nn"><h4>Pasarse el micrófono en silencio</h4><p>Con cinco voces hay cuatro cambios. Cada uno tiene su frase de pase escrita: sin eso parece una posta, no un relato.</p></div>
+    <div class="nn"><h4>Contar todo</h4><p>La ronda 1 es formativa. Guardá munición para la final.</p></div>
+  </div>
+</section>
+
+</div>

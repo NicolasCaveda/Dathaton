@@ -142,7 +142,7 @@ tratamiento. La limpieza va en un segundo notebook, con las decisiones ya tomada
 
 Toma los cuatro `.parquet` crudos y produce **`maestro_personas.parquet`** (15 MB, el formato
 de trabajo) y **`maestro_personas.csv`** (195 MB, para abrir en Excel): **674.546 filas, una por
-persona, 53 columnas**.
+persona, 54 columnas**.
 
 **Nada se borra.** Todos los problemas detectados se marcan con banderas booleanas en lugar de
 eliminar filas, así cada analista decide si filtra y el criterio queda explícito en el código
@@ -177,6 +177,23 @@ personas**.
 edades internamente consistentes (100 → 101 → 102) pero implausibles, y sin un segundo período
 con qué contrastarlas no hay forma de saber si son reales. Se conserva `edad_original` y quedan
 las banderas `edad_corregida_por_tipeo` y `edad_topeada`.
+
+### Los dos "score" no son lo mismo
+
+`score_riesgo` se normalizó en dos pasos: sacar el prefijo `SCORE_` (convivían `SCORE_ALTO` y
+`ALTO` como si fueran niveles distintos) y mapear a `score_ordinal` de 1 a 5. La dirección se
+verifica sobre los datos, no se asume: la correlación de Spearman con el ingreso da **+0,395**,
+o sea que **ALTO es mejor perfil, no más riesgo**, pese al nombre de la columna.
+
+`score_fraude` **no se tradujo a ordinal, a propósito**: el 85% de la muestra es "MUY BAJO", así
+que no discrimina entre plazas. Si tuviera ordinal, alguien lo mete en el índice y suma ruido
+con apariencia de señal. **Ojo con la polaridad: acá ALTO es malo**, al revés que en
+`score_riesgo`. Promediarlos juntos no significa nada.
+
+`score_riesgo_promedio_hogar` traía el mismo problema y peor: **tres grafías del mismo nivel**
+conviviendo (`MEDIO-ALTO`, `MEDIO_ALTO`, `SCORE_MEDIO_ALTO`) más una categoría `NO_DEFINIDO`.
+Se aplicó la misma regla que al individual —unificar prefijo y separador— y `NO_DEFINIDO` pasó
+a nulo. Pasó de 13 valores distintos a 5, y quedó `score_hogar_ordinal` para poder promediarlo.
 
 ### Código postal ambiguo
 

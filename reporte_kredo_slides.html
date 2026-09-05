@@ -11,8 +11,8 @@
     --surface-2: #18212e;
     --surface-3: #202b3a;
     --ink: #e8eff6;
-    --ink-2: #95a7b9;
-    --ink-3: #657789;
+    --ink-2: #a9bacb;
+    --ink-3: #8494a6;
     --rule: #222e3d;
     --rule-2: #31404f;
     --amba: #2694ba;
@@ -451,9 +451,14 @@
   /* ---------- tarjetas de plaza ---------- */
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     margin-top: 26px;
+  }
+  @media (max-width: 720px) {
+    .cards {
+      grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+    }
   }
   .card {
     background: var(--surface);

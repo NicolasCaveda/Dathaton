@@ -1,347 +1,1110 @@
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <title>Plan de Aterrizaje Kredo</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+/>
 <style>
-  :root{
-    --bg:#080C11; --surface:#111823; --surface-2:#18212E; --surface-3:#202B3A;
-    --ink:#E8EFF6; --ink-2:#95A7B9; --ink-3:#657789;
-    --rule:#222E3D; --rule-2:#31404F;
-    --amba:#2694BA; --inter:#C4862F;
-    --ui:#57BFE0; --ui-dim:#2694BA;
-    --ok:#3FA97A; --crit:#C4544B; --warn:#B08430;
-    --sel:#F0E6D2;
-    --display:"Sora","Helvetica Neue",Arial,sans-serif;
-    --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
-    --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+  :root {
+    --bg: #080c11;
+    --surface: #111823;
+    --surface-2: #18212e;
+    --surface-3: #202b3a;
+    --ink: #e8eff6;
+    --ink-2: #95a7b9;
+    --ink-3: #657789;
+    --rule: #222e3d;
+    --rule-2: #31404f;
+    --amba: #2694ba;
+    --inter: #c4862f;
+    --ui: #57bfe0;
+    --ui-dim: #2694ba;
+    --ok: #3fa97a;
+    --crit: #c4544b;
+    --warn: #b08430;
+    --sel: #f0e6d2;
+    --display: "Sora", "Helvetica Neue", Arial, sans-serif;
+    --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
   }
-  *{box-sizing:border-box}
-  body{background:var(--bg); color:var(--ink); font-family:var(--body); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased}
-  .wrap{max-width:1060px; margin:0 auto; padding:0 24px}
-  h1,h2,h3,h4{font-family:var(--display); margin:0; text-wrap:balance}
-  p{margin:0}
-  button{font-family:inherit; color:inherit}
-  .mono{font-family:var(--mono); font-variant-numeric:tabular-nums}
-  code{font-family:var(--mono); font-size:.87em; background:var(--surface-2); padding:1px 5px; border-radius:3px}
-  :focus-visible{outline:2px solid var(--ui); outline-offset:2px}
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--display);
+    margin: 0;
+    text-wrap: balance;
+  }
+  p {
+    margin: 0;
+  }
+  button {
+    font-family: inherit;
+    color: inherit;
+  }
+  .mono {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+  }
+  code {
+    font-family: var(--mono);
+    font-size: 0.87em;
+    background: var(--surface-2);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ui);
+    outline-offset: 2px;
+  }
 
   /* ---------- hero ---------- */
-  .hero{padding:64px 0 44px; border-bottom:1px solid var(--rule)}
-  .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ui); margin-bottom:18px}
-  .hero h1{font-size:clamp(38px,6.2vw,68px); font-weight:700; line-height:1.0; letter-spacing:-.03em}
-  .hero h1 em{font-style:normal; color:var(--ui)}
-  .hero .sub{margin-top:20px; font-size:19px; color:var(--ink-2); max-width:60ch}
-  .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:6px; overflow:hidden; margin-top:36px}
-  .kpi{background:var(--surface); padding:18px 20px}
-  .kpi .k{font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
-  .kpi .v{font-family:var(--display); font-size:27px; font-weight:700; letter-spacing:-.02em; margin-top:6px; font-variant-numeric:tabular-nums}
-  .kpi .d{font-size:13px; color:var(--ink-2); margin-top:4px}
+  .hero {
+    padding: 64px 0 44px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ui);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(38px, 6.2vw, 68px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--ui);
+  }
+  .hero .sub {
+    margin-top: 20px;
+    font-size: 19px;
+    color: var(--ink-2);
+    max-width: 60ch;
+  }
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 36px;
+  }
+  .kpi {
+    background: var(--surface);
+    padding: 18px 20px;
+  }
+  .kpi .k {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .kpi .v {
+    font-family: var(--display);
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-top: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .kpi .d {
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-top: 4px;
+  }
 
   /* ---------- secciones ---------- */
-  section{padding:60px 0; border-bottom:1px solid var(--rule)}
-  .act{font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ui); margin-bottom:12px}
-  section h2{font-size:clamp(26px,3.6vw,38px); font-weight:600; letter-spacing:-.022em; line-height:1.12; max-width:22ch}
-  .lede{margin-top:16px; font-size:17px; color:var(--ink-2); max-width:70ch}
-  .lede + .lede{margin-top:12px}
-  .lede b{color:var(--ink); font-weight:600}
-  .big{font-family:var(--display); font-size:clamp(30px,4.4vw,46px); font-weight:700; letter-spacing:-.025em; color:var(--ui); line-height:1.1}
+  section {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .act {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ui);
+    margin-bottom: 12px;
+  }
+  section h2 {
+    font-size: clamp(26px, 3.6vw, 38px);
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    line-height: 1.12;
+    max-width: 22ch;
+  }
+  .lede {
+    margin-top: 16px;
+    font-size: 17px;
+    color: var(--ink-2);
+    max-width: 70ch;
+  }
+  .lede + .lede {
+    margin-top: 12px;
+  }
+  .lede b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .big {
+    font-family: var(--display);
+    font-size: clamp(30px, 4.4vw, 46px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--ui);
+    line-height: 1.1;
+  }
 
-  .panel{background:var(--surface); border:1px solid var(--rule); border-radius:8px; padding:22px; margin-top:26px}
-  .panel h3{font-size:16px; font-weight:600; margin-bottom:4px}
-  .panel .ph{font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); margin-bottom:14px}
-  .split{display:grid; grid-template-columns:300px 1fr; gap:24px; align-items:start}
-  @media(max-width:820px){ .split{grid-template-columns:1fr} }
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 22px;
+    margin-top: 26px;
+  }
+  .panel h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .panel .ph {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 14px;
+  }
+  .split {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  @media (max-width: 820px) {
+    .split {
+      grid-template-columns: 1fr;
+    }
+  }
 
   /* ---------- controles ---------- */
-  .ctrls{display:flex; flex-direction:column; gap:15px}
-  .ctrl label{display:flex; justify-content:space-between; align-items:baseline; font-size:13.5px; color:var(--ink-2); margin-bottom:5px}
-  .ctrl label b{font-family:var(--mono); color:var(--ui); font-weight:600; font-size:13px}
-  .ctrl .hint{font-size:11.5px; color:var(--ink-3); margin-top:3px; line-height:1.4}
-  input[type=range]{width:100%; accent-color:var(--ui); background:transparent; height:20px}
-  .chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:4px}
-  .chip{background:var(--surface-2); border:1px solid var(--rule-2); color:var(--ink-2); border-radius:100px; padding:5px 13px; font-size:12.5px; cursor:pointer; transition:.15s}
-  .chip:hover{border-color:var(--ui-dim); color:var(--ink)}
-  .chip[aria-pressed=true]{background:var(--ui-dim); border-color:var(--ui-dim); color:#04121A; font-weight:600}
-  select{background:var(--surface-2); color:var(--ink); border:1px solid var(--rule-2); border-radius:6px; padding:9px 11px; font-size:14px; font-family:inherit; width:100%}
+  .ctrls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .ctrl label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 13.5px;
+    color: var(--ink-2);
+    margin-bottom: 5px;
+  }
+  .ctrl label b {
+    font-family: var(--mono);
+    color: var(--ui);
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .ctrl .hint {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  input[type="range"] {
+    width: 100%;
+    accent-color: var(--ui);
+    background: transparent;
+    height: 20px;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 4px;
+  }
+  .chip {
+    background: var(--surface-2);
+    border: 1px solid var(--rule-2);
+    color: var(--ink-2);
+    border-radius: 100px;
+    padding: 5px 13px;
+    font-size: 12.5px;
+    cursor: pointer;
+    transition: 0.15s;
+  }
+  .chip:hover {
+    border-color: var(--ui-dim);
+    color: var(--ink);
+  }
+  .chip[aria-pressed="true"] {
+    background: var(--ui-dim);
+    border-color: var(--ui-dim);
+    color: #04121a;
+    font-weight: 600;
+  }
+  select {
+    background: var(--surface-2);
+    color: var(--ink);
+    border: 1px solid var(--rule-2);
+    border-radius: 6px;
+    padding: 9px 11px;
+    font-size: 14px;
+    font-family: inherit;
+    width: 100%;
+  }
 
   /* ---------- barras del ranking ---------- */
-  .bars{display:flex; flex-direction:column; gap:3px}
-  .bar{display:grid; grid-template-columns:26px 1fr 52px; gap:10px; align-items:center; font-size:13.5px; padding:2px 0}
-  .bar .pos{font-family:var(--mono); font-size:11.5px; color:var(--ink-3); text-align:right}
-  .bar .track{position:relative; height:26px; background:var(--surface-2); border-radius:3px; overflow:hidden}
-  .bar .fill{position:absolute; inset:0 auto 0 0; border-radius:3px}
-  .bar .lbl{position:absolute; left:9px; top:0; height:26px; display:flex; align-items:center; font-size:12.5px; color:var(--ink); text-shadow:0 1px 3px rgba(0,0,0,.7); white-space:nowrap}
-  .bar .val{font-family:var(--mono); font-size:12px; color:var(--ink-2); text-align:right}
-  .bar.on .lbl{font-weight:600}
-  .bar.on .track{box-shadow:inset 0 0 0 1.5px var(--sel)}
+  .bars {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .bar {
+    display: grid;
+    grid-template-columns: 26px 1fr 52px;
+    gap: 10px;
+    align-items: center;
+    font-size: 13.5px;
+    padding: 2px 0;
+  }
+  .bar .pos {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-3);
+    text-align: right;
+  }
+  .bar .track {
+    position: relative;
+    height: 26px;
+    background: var(--surface-2);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .bar .fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    border-radius: 3px;
+  }
+  .bar .lbl {
+    position: absolute;
+    left: 9px;
+    top: 0;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    font-size: 12.5px;
+    color: var(--ink);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    white-space: nowrap;
+  }
+  .bar .val {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-2);
+    text-align: right;
+  }
+  .bar.on .lbl {
+    font-weight: 600;
+  }
+  .bar.on .track {
+    box-shadow: inset 0 0 0 1.5px var(--sel);
+  }
 
   /* ---------- matriz de cobertura ---------- */
-  .cov{overflow-x:auto; margin-top:22px; padding-bottom:6px}
-  .covgrid{display:grid; grid-auto-flow:column; grid-template-rows:auto repeat(3,20px); gap:3px; min-width:840px}
-  .covgrid .rowlab{font-family:var(--mono); font-size:10px; color:var(--ink-3); display:flex; align-items:center; padding-right:8px; justify-content:flex-end; white-space:nowrap}
-  .covgrid .hd{height:78px}
-  .cc{border-radius:2px}
-  .cc.y{background:var(--ok)} .cc.n{background:var(--crit)}
-  .cplab{font-family:var(--mono); font-size:9.5px; color:var(--ink-3); writing-mode:vertical-rl; transform:rotate(180deg); height:78px; display:flex; align-items:flex-end; justify-content:flex-start; overflow:hidden}
-  .cplab.sel{color:var(--sel); font-weight:600}
+  .cov {
+    overflow-x: auto;
+    margin-top: 22px;
+    padding-bottom: 6px;
+  }
+  .covgrid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: auto repeat(3, 20px);
+    gap: 3px;
+    min-width: 840px;
+  }
+  .covgrid .rowlab {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-3);
+    display: flex;
+    align-items: center;
+    padding-right: 8px;
+    justify-content: flex-end;
+    white-space: nowrap;
+  }
+  .covgrid .hd {
+    height: 78px;
+  }
+  .cc {
+    border-radius: 2px;
+  }
+  .cc.y {
+    background: var(--ok);
+  }
+  .cc.n {
+    background: var(--crit);
+  }
+  .cplab {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--ink-3);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    height: 78px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+  .cplab.sel {
+    color: var(--sel);
+    font-weight: 600;
+  }
 
   /* ---------- scatter ---------- */
-  svg{display:block; width:100%; height:auto; overflow:visible}
-  .gridline{stroke:var(--rule); stroke-width:1}
-  .axtxt{fill:var(--ink-3); font-family:var(--mono); font-size:10px}
-  .axlab{fill:var(--ink-2); font-family:var(--body); font-size:12px}
-  .ptlab{fill:var(--ink); font-family:var(--body); font-size:11px; paint-order:stroke; stroke:var(--bg); stroke-width:3px; stroke-linejoin:round}
-  .legend{display:flex; gap:18px; flex-wrap:wrap; align-items:center; margin-top:14px; font-size:13px; color:var(--ink-2)}
-  .legend span{display:inline-flex; align-items:center; gap:7px}
-  .dot{width:11px; height:11px; border-radius:50%; display:inline-block}
-  .ring{width:13px; height:13px; border-radius:50%; border:2px solid var(--sel); display:inline-block}
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .gridline {
+    stroke: var(--rule);
+    stroke-width: 1;
+  }
+  .axtxt {
+    fill: var(--ink-3);
+    font-family: var(--mono);
+    font-size: 10px;
+  }
+  .axlab {
+    fill: var(--ink-2);
+    font-family: var(--body);
+    font-size: 12px;
+  }
+  .ptlab {
+    fill: var(--ink);
+    font-family: var(--body);
+    font-size: 11px;
+    paint-order: stroke;
+    stroke: var(--bg);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+  }
+  .legend {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+  .legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .ring {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 2px solid var(--sel);
+    display: inline-block;
+  }
 
   /* ---------- tarjetas de plaza ---------- */
-  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(232px,1fr)); gap:12px; margin-top:26px}
-  .card{background:var(--surface); border:1px solid var(--rule); border-top:3px solid var(--ui-dim); border-radius:8px; padding:17px 18px; display:flex; flex-direction:column; gap:7px}
-  .card .ola{font-family:var(--mono); font-size:10px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3)}
-  .card h4{font-size:18px; font-weight:600; letter-spacing:-.01em}
-  .card .met{font-family:var(--mono); font-size:12px; color:var(--ink-2); line-height:1.75; font-variant-numeric:tabular-nums}
-  .card .why{font-size:13.5px; color:var(--ink-2); margin-top:auto; padding-top:9px; border-top:1px dashed var(--rule-2)}
-  .card .prod{display:inline-block; font-size:11.5px; font-family:var(--mono); background:var(--surface-3); border-radius:100px; padding:3px 10px; color:var(--ink); align-self:flex-start}
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+    gap: 12px;
+    margin-top: 26px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--ui-dim);
+    border-radius: 8px;
+    padding: 17px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .card .ola {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .card h4 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .card .met {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.75;
+    font-variant-numeric: tabular-nums;
+  }
+  .card .why {
+    font-size: 13.5px;
+    color: var(--ink-2);
+    margin-top: auto;
+    padding-top: 9px;
+    border-top: 1px dashed var(--rule-2);
+  }
+  .card .prod {
+    display: inline-block;
+    font-size: 11.5px;
+    font-family: var(--mono);
+    background: var(--surface-3);
+    border-radius: 100px;
+    padding: 3px 10px;
+    color: var(--ink);
+    align-self: flex-start;
+  }
 
   /* ---------- ficha / comparador ---------- */
-  .ficha{display:grid; grid-template-columns:repeat(auto-fit,minmax(128px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:6px; overflow:hidden; margin-top:16px}
-  .ficha div{background:var(--surface-2); padding:12px 14px}
-  .ficha .k{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
-  .ficha .v{font-family:var(--display); font-size:19px; font-weight:600; margin-top:3px; font-variant-numeric:tabular-nums}
-  .ficha .s{font-size:11.5px; color:var(--ink-3); margin-top:2px}
-  .badge{display:inline-block; font-family:var(--mono); font-size:10.5px; padding:3px 9px; border-radius:100px; margin-right:6px; margin-top:8px}
-  .badge.ok{background:rgba(63,169,122,.16); color:var(--ok)}
-  .badge.bad{background:rgba(196,84,75,.16); color:var(--crit)}
-  .badge.neu{background:var(--surface-3); color:var(--ink-2)}
+  .ficha {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 16px;
+  }
+  .ficha div {
+    background: var(--surface-2);
+    padding: 12px 14px;
+  }
+  .ficha .k {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .ficha .v {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 600;
+    margin-top: 3px;
+    font-variant-numeric: tabular-nums;
+  }
+  .ficha .s {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    margin-top: 2px;
+  }
+  .badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    padding: 3px 9px;
+    border-radius: 100px;
+    margin-right: 6px;
+    margin-top: 8px;
+  }
+  .badge.ok {
+    background: rgba(63, 169, 122, 0.16);
+    color: var(--ok);
+  }
+  .badge.bad {
+    background: rgba(196, 84, 75, 0.16);
+    color: var(--crit);
+  }
+  .badge.neu {
+    background: var(--surface-3);
+    color: var(--ink-2);
+  }
 
-  table{border-collapse:collapse; width:100%; font-size:14px; margin-top:16px}
-  th,td{text-align:left; padding:9px 12px; border-bottom:1px solid var(--rule)}
-  thead th{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); font-weight:600}
-  td.n{text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums}
-  tbody tr:last-child td{border-bottom:0}
-  .win{color:var(--ui); font-weight:600}
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+    margin-top: 16px;
+  }
+  th,
+  td {
+    text-align: left;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  thead th {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 600;
+  }
+  td.n {
+    text-align: right;
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+  }
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+  .win {
+    color: var(--ui);
+    font-weight: 600;
+  }
 
   /* ---------- timeline ---------- */
-  .tl{display:flex; flex-direction:column; gap:14px; margin-top:26px}
-  .wave{background:var(--surface); border:1px solid var(--rule); border-radius:8px; padding:18px 20px; display:grid; grid-template-columns:118px 1fr; gap:20px}
-  .wave .wl{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ui)}
-  .wave .wl span{display:block; color:var(--ink-3); margin-top:3px; letter-spacing:0; text-transform:none; font-size:11.5px}
-  .wave h4{font-size:17px; font-weight:600; margin-bottom:6px}
-  .wave p{font-size:14.5px; color:var(--ink-2)}
-  .gate{margin-top:11px; padding:10px 13px; background:var(--surface-2); border-left:2px solid var(--warn); border-radius:0 5px 5px 0; font-size:13.5px; color:var(--ink-2)}
-  .gate b{color:var(--ink); font-weight:600}
-  @media(max-width:640px){ .wave{grid-template-columns:1fr; gap:10px} }
+  .tl {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 26px;
+  }
+  .wave {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: 118px 1fr;
+    gap: 20px;
+  }
+  .wave .wl {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ui);
+  }
+  .wave .wl span {
+    display: block;
+    color: var(--ink-3);
+    margin-top: 3px;
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: 11.5px;
+  }
+  .wave h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .wave p {
+    font-size: 14.5px;
+    color: var(--ink-2);
+  }
+  .gate {
+    margin-top: 11px;
+    padding: 10px 13px;
+    background: var(--surface-2);
+    border-left: 2px solid var(--warn);
+    border-radius: 0 5px 5px 0;
+    font-size: 13.5px;
+    color: var(--ink-2);
+  }
+  .gate b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  @media (max-width: 640px) {
+    .wave {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+  }
 
-  .note{background:var(--surface-2); border-left:3px solid var(--warn); border-radius:0 6px 6px 0; padding:15px 18px; font-size:14.5px; color:var(--ink-2); margin-top:22px}
-  .note b{color:var(--ink); font-weight:600}
-  footer{padding:40px 0 70px; font-size:13px; color:var(--ink-3)}
+  .note {
+    background: var(--surface-2);
+    border-left: 3px solid var(--warn);
+    border-radius: 0 6px 6px 0;
+    padding: 15px 18px;
+    font-size: 14.5px;
+    color: var(--ink-2);
+    margin-top: 22px;
+  }
+  .note b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  footer {
+    padding: 40px 0 70px;
+    font-size: 13px;
+    color: var(--ink-3);
+  }
 
   /* ---------- modo presentacion (slides) ---------- */
-  html,body{height:100%; overflow:hidden}
-  .slide-deck{position:fixed; inset:0; overflow:hidden}
-  .slide{position:absolute; inset:0; overflow-y:auto; opacity:0; visibility:hidden; pointer-events:none;
-    transform:translateY(14px); transition:opacity .32s ease, transform .32s ease;
-    display:flex; align-items:flex-start; justify-content:center;
-    padding:0; border-bottom:0}
-  .slide.active{opacity:1; visibility:visible; pointer-events:auto; transform:translateY(0)}
-  .slide .wrap{width:100%; margin:auto; padding-top:min(7vh,64px); padding-bottom:70px}
-  .slide header.hero{border-bottom:0; padding-top:0}
-  .slide .wrap > section{border-bottom:0; padding:0}
-  .slide footer{padding:34px 0 0}
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+  .slide-deck {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(14px);
+    transition:
+      opacity 0.32s ease,
+      transform 0.32s ease;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0;
+    border-bottom: 0;
+  }
+  .slide.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .slide .wrap {
+    width: 100%;
+    margin: auto;
+    padding-top: min(7vh, 64px);
+    padding-bottom: 70px;
+  }
+  .slide header.hero {
+    border-bottom: 0;
+    padding-top: 0;
+  }
+  .slide .wrap > section {
+    border-bottom: 0;
+    padding: 0;
+  }
+  .slide footer {
+    padding: 34px 0 0;
+  }
 
-  .deck-nav{position:fixed; left:50%; bottom:20px; transform:translateX(-50%); z-index:40;
-    display:flex; align-items:center; gap:14px; background:var(--surface); border:1px solid var(--rule);
-    border-radius:100px; padding:8px 10px 8px 14px; box-shadow:0 10px 30px rgba(0,0,0,.35)}
-  .deck-nav button{background:var(--surface-2); border:1px solid var(--rule-2); color:var(--ink); width:32px; height:32px;
-    border-radius:50%; cursor:pointer; font-size:15px; display:flex; align-items:center; justify-content:center; transition:.15s}
-  .deck-nav button:hover{border-color:var(--ui-dim); color:var(--ui)}
-  .deck-nav button:disabled{opacity:.3; cursor:default}
-  .deck-count{font-family:var(--mono); font-size:12px; color:var(--ink-2); min-width:52px; text-align:center; font-variant-numeric:tabular-nums}
-  .deck-dots{display:flex; gap:6px; margin-right:2px}
-  .deck-dots i{width:6px; height:6px; border-radius:50%; background:var(--rule-2); display:block; cursor:pointer; transition:.15s}
-  .deck-dots i.on{background:var(--ui); width:16px; border-radius:4px}
+  .deck-nav {
+    position: fixed;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    padding: 8px 10px 8px 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+  .deck-nav button {
+    background: var(--surface-2);
+    border: 1px solid var(--rule-2);
+    color: var(--ink);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.15s;
+  }
+  .deck-nav button:hover {
+    border-color: var(--ui-dim);
+    color: var(--ui);
+  }
+  .deck-nav button:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .deck-count {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-2);
+    min-width: 52px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+  .deck-dots {
+    display: flex;
+    gap: 6px;
+    margin-right: 2px;
+  }
+  .deck-dots i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--rule-2);
+    display: block;
+    cursor: pointer;
+    transition: 0.15s;
+  }
+  .deck-dots i.on {
+    background: var(--ui);
+    width: 16px;
+    border-radius: 4px;
+  }
 
-  .deck-progress{position:fixed; top:0; left:0; height:2px; background:var(--ui); z-index:41; transition:width .32s ease}
+  .deck-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--ui);
+    z-index: 41;
+    transition: width 0.32s ease;
+  }
 
-  @media(max-width:640px){
-    .deck-nav{gap:10px; padding:7px 8px 7px 12px}
-    .deck-dots{display:none}
+  @media (max-width: 640px) {
+    .deck-nav {
+      gap: 10px;
+      padding: 7px 8px 7px 12px;
+    }
+    .deck-dots {
+      display: none;
+    }
   }
 </style>
-
 
 <div class="deck-progress" id="deckProgress"></div>
 
 <div class="slide-deck" id="deck">
   <section class="slide" id="slide-0" data-index="0">
     <div class="wrap">
-<header class="hero">
-  <div class="eyebrow">Datathon UCU · ITBA — Kredo entra a Argentina</div>
-  <h1>Seis sucursales.<br>Empezamos por <em>Córdoba</em>.</h1>
-  <p class="sub">Un plan de apertura a doce meses para las 47 plazas del dataset, construido sobre 674.546 personas y la población real del Censo 2022. Con una advertencia: el ranking obvio está roto, y arreglarlo cambia quién gana.</p>
-  <div class="kpis" id="kpis"></div>
-</header>
+      <header class="hero">
+        <div class="eyebrow">Datathon UCU · ITBA — Kredo entra a Argentina</div>
+        <h1>Seis sucursales.<br />Empezamos por <em>Córdoba</em>.</h1>
+        <div class="kpis" id="kpis"></div>
+      </header>
     </div>
   </section>
 
   <section class="slide" id="slide-1" data-index="1">
     <div class="wrap">
-<section>
-  <div class="act">Acto I · El terreno</div>
-  <h2>El dataset no es el mercado</h2>
-  <p class="lede">Las 47 plazas suman <b>12.477.195 habitantes</b>. La muestra de Equifax cubre 674.546 personas: el <b>5,4%</b>. Hasta ahí, nada raro. El problema es que esa cobertura no es pareja.</p>
-  <p class="lede">Va del <b>1,1% al 31,5%</b> según la plaza. Banfield aporta 19.210 personas sobre 61.072 habitantes; Virrey del Pino aporta 2.202 sobre 207.478. Por tamaño de muestra, Banfield parece nueve veces más grande. Por población real, <b>Virrey del Pino es tres veces y media más grande</b>.</p>
-  <p class="lede">Rankear plazas por cantidad de filas en el dataset no es una simplificación: es medir otro país. Todo lo que sigue usa población para el tamaño y la muestra solo para estimar tasas.</p>
-  <div class="panel">
-    <div class="ph">Penetración de la muestra sobre la población · 47 plazas</div>
-    <div id="pen"></div>
-  </div>
-</section>
+      <section>
+        <div class="act">Acto I · El terreno</div>
+        <h2>El dataset no es el mercado</h2>
+        <div class="panel">
+          <div class="ph">
+            Penetración de la muestra sobre la población · 47 plazas
+          </div>
+          <div id="pen"></div>
+        </div>
+      </section>
     </div>
   </section>
 
   <section class="slide" id="slide-2" data-index="2">
     <div class="wrap">
-<section>
-  <div class="act">Acto II · El punto ciego</div>
-  <h2>Los datos que faltan, faltan por localidad</h2>
-  <p class="lede">En ingresos, situación laboral y score crediticio hay códigos postales donde la variable está completa al 99,8% y códigos postales donde no existe, con 0,4%. No hay término medio: <b>o la plaza tiene el bloque, o no lo tiene</b>. Eso no habla de la gente, habla de qué fuentes usó Equifax en cada territorio.</p>
-  <div class="cov"><div class="covgrid" id="cov"></div></div>
-  <div class="legend">
-    <span><i class="dot" style="background:var(--ok)"></i> bloque disponible</span>
-    <span><i class="dot" style="background:var(--crit)"></i> plaza ciega en ese bloque</span>
-  </div>
-  <p class="lede" style="margin-top:26px">Solo <b>29 de las 47 plazas</b> tienen los tres bloques. Y las incompletas no son marginales: Tucumán, La Plata, Salta y Palermo están entre las más grandes del país.</p>
-  <div class="note"><b>Por qué esto rompe un ranking.</b> Un índice que promedia ingreso, laboral y score compara plazas que no son comparables. Con el promedio por defecto de cualquier herramienta, el ingreso de Tucumán se calcula sobre 175 personas de 39.258 — y no aparece ningún error, ninguna alerta, ningún nulo. Sale un número presentable. Peor todavía: verificamos que esos 175 no son una muestra chica sino <b>sesgada</b> — piden 12 puntos menos de crédito que el resto de su plaza. Y mirando el ranking final es imposible distinguir una caída legítima de un artefacto de cobertura.</div>
-</section>
+      <section>
+        <div class="act">Acto II · El punto ciego</div>
+        <h2>Los datos que faltan, faltan por localidad</h2>
+        <div class="cov"><div class="covgrid" id="cov"></div></div>
+        <div class="legend">
+          <span
+            ><i class="dot" style="background: var(--ok)"></i> bloque
+            disponible</span
+          >
+          <span
+            ><i class="dot" style="background: var(--crit)"></i> plaza ciega en
+            ese bloque</span
+          >
+        </div>
+        <p class="lede" style="margin-top: 26px">
+          Solo <b>29 de las 47 plazas</b> tienen los tres bloques. Y las
+          incompletas no son marginales: Tucumán, La Plata, Salta y Palermo
+          están entre las más grandes del país.
+        </p>
+        <div class="note">
+          <b>Por qué esto rompe un ranking.</b> Un índice que promedia ingreso,
+          laboral y score compara plazas que no son comparables. Con el promedio
+          por defecto de cualquier herramienta, el ingreso de Tucumán se calcula
+          sobre 175 personas de 39.258 — y no aparece ningún error, ninguna
+          alerta, ningún nulo. Sale un número presentable. Peor todavía:
+          verificamos que esos 175 no son una muestra chica sino
+          <b>sesgada</b> — piden 12 puntos menos de crédito que el resto de su
+          plaza. Y mirando el ranking final es imposible distinguir una caída
+          legítima de un artefacto de cobertura.
+        </div>
+      </section>
     </div>
   </section>
 
   <section class="slide" id="slide-3" data-index="3">
     <div class="wrap">
-<section>
-  <div class="act">Acto III · El método</div>
-  <h2>Un índice que sabe lo que no sabe</h2>
-  <p class="lede">Cinco dimensiones, pesos explícitos. Para cada plaza el índice promedia <b>solo las dimensiones que esa plaza tiene medidas</b> y reparte el peso restante entre ellas — y guarda cuánto del peso total pudo usar, que es la <b>confianza</b>. Una plaza con 68% de confianza no está mal medida: está medida sobre dos tercios del criterio, y eso se dice.</p>
-  <p class="lede">Movés los pesos y el ranking se reordena. Es la prueba de que la recomendación no depende de una ponderación afortunada.</p>
-  <div class="panel split">
-    <div>
-      <div class="ph">Pesos del índice</div>
-      <div class="ctrls" id="sliders"></div>
-      <div class="ph" style="margin-top:22px">Escenarios</div>
-      <div class="chips" id="escen"></div>
-      <button class="chip" id="reset" style="margin-top:10px">Volver a la base</button>
-    </div>
-    <div>
-      <div class="ph" id="ranktitle">Ranking · top 14 de 47</div>
-      <div class="bars" id="rank"></div>
-      <div class="legend">
-        <span><i class="dot" style="background:var(--amba)"></i> AMBA</span>
-        <span><i class="dot" style="background:var(--inter)"></i> Interior</span>
-      </div>
-    </div>
-  </div>
-  <div class="note" id="robusto"></div>
-</section>
+      <section>
+        <div class="act">Acto III · El método</div>
+        <h2>Un índice que sabe lo que no sabe</h2>
+        <div class="panel split">
+          <div>
+            <div class="ph">Pesos del índice</div>
+            <div class="ctrls" id="sliders"></div>
+            <div class="ph" style="margin-top: 22px">Escenarios</div>
+            <div class="chips" id="escen"></div>
+            <button class="chip" id="reset" style="margin-top: 10px">
+              Volver a la base
+            </button>
+          </div>
+          <div>
+            <div class="ph" id="ranktitle">Ranking · top 14 de 47</div>
+            <div class="bars" id="rank"></div>
+            <div class="legend">
+              <span
+                ><i class="dot" style="background: var(--amba)"></i> AMBA</span
+              >
+              <span
+                ><i class="dot" style="background: var(--inter)"></i>
+                Interior</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="note" id="robusto"></div>
+      </section>
     </div>
   </section>
 
   <section class="slide" id="slide-4" data-index="4">
     <div class="wrap">
-<section>
-  <div class="act">Acto IV · El mapa de decisión</div>
-  <h2>Demanda contra calidad de cartera</h2>
-  <p class="lede">Cada punto es una plaza. A la derecha, mercados con hambre de crédito. Arriba, mercados con buen perfil de riesgo. El tamaño del punto es la población. <b>La esquina superior derecha no existe</b>: no hay plazas que sean a la vez muy demandantes y muy buenas, y ahí está el negocio a resolver.</p>
-  <div class="panel">
-    <div class="chips" id="sfilters"></div>
-    <div id="scatter" style="margin-top:16px"></div>
-    <div class="legend">
-      <span><i class="dot" style="background:var(--amba)"></i> AMBA</span>
-      <span><i class="dot" style="background:var(--inter)"></i> Interior</span>
-      <span style="color:var(--ink-3)">tamaño del punto = población</span>
-    </div>
-    <p class="lede" style="font-size:14px; margin-top:14px" id="scatnote"></p>
-  </div>
-</section>
+      <section>
+        <div class="act">Acto IV · El mapa de decisión</div>
+        <h2>Demanda contra calidad de cartera</h2>
+        <p class="lede">
+          Cada punto es una plaza. A la derecha, mercados con hambre de crédito.
+          Arriba, mercados con buen perfil de riesgo. El tamaño del punto es la
+          población. <b>La esquina superior derecha no existe</b>: no hay plazas
+          que sean a la vez muy demandantes y muy buenas, y ahí está el negocio
+          a resolver.
+        </p>
+        <div class="panel">
+          <div class="chips" id="sfilters"></div>
+          <div id="scatter" style="margin-top: 16px"></div>
+          <div class="legend">
+            <span
+              ><i class="dot" style="background: var(--amba)"></i> AMBA</span
+            >
+            <span
+              ><i class="dot" style="background: var(--inter)"></i>
+              Interior</span
+            >
+            <span style="color: var(--ink-3)"
+              >tamaño del punto = población</span
+            >
+          </div>
+          <p
+            class="lede"
+            style="font-size: 14px; margin-top: 14px"
+            id="scatnote"
+          ></p>
+        </div>
+      </section>
     </div>
   </section>
 
   <section class="slide" id="slide-5" data-index="5">
     <div class="wrap">
-<section>
-  <div class="act">Acto V · La recomendación</div>
-  <h2>Seis plazas, tres olas, dos productos</h2>
-  <p class="lede">El corte: entran las plazas con <b>mercado direccionable mayor a 150.000 personas</b> —población por tasa de demanda— y mejor posición en el índice. Seis, no diez, porque Kredo nunca operó una sucursal física y el prendario exige montar inspección vehicular, verificación documental y firma de garantía. La capacidad de ejecución es la restricción, no el mapa.</p>
-  <div class="cards" id="cards"></div>
-  <div class="note"><b>Las seis cubren 2.261.586 personas de mercado direccionable: el 42% del total de las 47 plazas, con el 13% de las plazas.</b></div>
-</section>
+      <section>
+        <div class="act">Acto V · La recomendación</div>
+        <h2>Seis plazas, tres olas, dos productos</h2>
+        <div class="cards" id="cards"></div>
+        <div class="note">
+          <b
+            >Las seis cubren 2.261.586 personas de mercado direccionable: el 42%
+            del total de las 47 plazas, con el 13% de las plazas.</b
+          >
+        </div>
+      </section>
     </div>
   </section>
 
   <section class="slide" id="slide-6" data-index="6">
     <div class="wrap">
-<section>
-  <div class="act">Acto V · La recomendación</div>
-  <h2>Asignación de producto</h2>
-  <div class="panel">
-    <div class="ph">Por qué cada plaza prioriza una línea y no la otra</div>
-    <p class="lede" style="margin:0 0 10px;font-size:14.5px">El prendario exige recibo de sueldo, verificación documental y garantía sobre el auto. La regla: <b>prendario donde el ingreso alto y el empleo registrado superan el promedio de la muestra</b> (18,5% y 19,9%); personal de monto bajo donde no.</p>
-    <table><thead><tr><th>Plaza</th><th class="n">Ingreso alto</th><th class="n">Rel. dependencia</th><th>Producto</th></tr></thead><tbody>
-      <tr><td>Rosario</td><td class="n win">20,7%</td><td class="n win">22,4%</td><td>Prendario + personal</td></tr>
-      <tr><td>Córdoba</td><td class="n win">19,0%</td><td class="n win">21,0%</td><td>Prendario + personal</td></tr>
-      <tr><td>Neuquén</td><td class="n win">26,1%</td><td class="n" style="color:var(--crit)">sin dato</td><td>Prendario · evidencia parcial</td></tr>
-      <tr><td>Santa Fe</td><td class="n">18,1%</td><td class="n">16,8%</td><td>Personal</td></tr>
-      <tr><td>Salta</td><td class="n" style="color:var(--crit)">sin dato</td><td class="n">15,8%</td><td>Personal · evidencia parcial</td></tr>
-      <tr><td>San Miguel de Tucumán</td><td class="n" style="color:var(--crit)">sin dato</td><td class="n">15,1%</td><td>Personal · evidencia parcial</td></tr>
-    </tbody></table>
-    <p class="lede" style="margin-top:12px;font-size:14px"><b>Solo Córdoba, Rosario y Santa Fe tienen evidencia completa para decidir el producto.</b> En las otras tres la decisión se apoya en una sola de las dos condiciones, y esa incertidumbre es parte de por qué entran en las olas 2 y 3 y no en la primera.</p>
-  </div>
-</section>
+      <section>
+        <div class="act">Acto V · La recomendación</div>
+        <h2>Asignación de producto</h2>
+        <div class="panel">
+          <div class="ph">
+            Por qué cada plaza prioriza una línea y no la otra
+          </div>
+          <p class="lede" style="margin: 0 0 10px; font-size: 14.5px">
+            El prendario exige recibo de sueldo, verificación documental y
+            garantía sobre el auto. La regla:
+            <b
+              >prendario donde el ingreso alto y el empleo registrado superan el
+              promedio de la muestra</b
+            >
+            (18,5% y 19,9%); personal de monto bajo donde no.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Plaza</th>
+                <th class="n">Ingreso alto</th>
+                <th class="n">Rel. dependencia</th>
+                <th>Producto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Rosario</td>
+                <td class="n win">20,7%</td>
+                <td class="n win">22,4%</td>
+                <td>Prendario + personal</td>
+              </tr>
+              <tr>
+                <td>Córdoba</td>
+                <td class="n win">19,0%</td>
+                <td class="n win">21,0%</td>
+                <td>Prendario + personal</td>
+              </tr>
+              <tr>
+                <td>Neuquén</td>
+                <td class="n win">26,1%</td>
+                <td class="n" style="color: var(--crit)">sin dato</td>
+                <td>Prendario · evidencia parcial</td>
+              </tr>
+              <tr>
+                <td>Santa Fe</td>
+                <td class="n">18,1%</td>
+                <td class="n">16,8%</td>
+                <td>Personal</td>
+              </tr>
+              <tr>
+                <td>Salta</td>
+                <td class="n" style="color: var(--crit)">sin dato</td>
+                <td class="n">15,8%</td>
+                <td>Personal · evidencia parcial</td>
+              </tr>
+              <tr>
+                <td>San Miguel de Tucumán</td>
+                <td class="n" style="color: var(--crit)">sin dato</td>
+                <td class="n">15,1%</td>
+                <td>Personal · evidencia parcial</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="lede" style="margin-top: 12px; font-size: 14px">
+            <b
+              >Solo Córdoba, Rosario y Santa Fe tienen evidencia completa para
+              decidir el producto.</b
+            >
+            En las otras tres la decisión se apoya en una sola de las dos
+            condiciones, y esa incertidumbre es parte de por qué entran en las
+            olas 2 y 3 y no en la primera.
+          </p>
+        </div>
+      </section>
     </div>
   </section>
 
   <section class="slide" id="slide-7" data-index="7">
     <div class="wrap">
-<section>
-  <div class="act">Acto V · La recomendación</div>
-  <h2>Compará dos plazas</h2>
-  <div class="panel">
-    <div class="ph">Para defender por qué una entró y la otra no</div>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
-      <select id="cmpA"></select><select id="cmpB"></select>
-    </div>
-    <div id="cmp"></div>
-  </div>
-</section>
+      <section>
+        <div class="act">Acto V · La recomendación</div>
+        <h2>Compará dos plazas</h2>
+        <div class="panel">
+          <div class="ph">Para defender por qué una entró y la otra no</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
+            <select id="cmpA"></select
+            ><select id="cmpB"></select>
+          </div>
+          <div id="cmp"></div>
+        </div>
+      </section>
     </div>
   </section>
 
   <section class="slide" id="slide-8" data-index="8">
     <div class="wrap">
-<section>
-  <div class="act">Acto VI · El plan</div>
-  <h2>Doce meses en tres olas, con condiciones para frenar</h2>
-  <p class="lede">El orden no sigue al índice, y eso es deliberado. <b>La ola 1 prioriza certeza sobre puntaje</b>: Córdoba y Rosario son los mercados más grandes, tienen los tres bloques de datos completos y sirven de piloto operativo para el prendario. Tucumán, que lidera el índice, va última — precisamente porque es la que peor podemos medir.</p>
-  <div class="tl" id="tl"></div>
-  <div class="note"><b>Qué hacemos si la ola 1 no llega.</b> Si a los seis meses Córdoba y Rosario no alcanzan el umbral de activaciones, no se abre la ola 2: se reasigna el presupuesto a canal digital en esas mismas plazas y se reevalúa si el problema es la plaza o el modelo de sucursal. El plan tiene freno, y ese freno es lo que lo vuelve defendible ante un directorio.</div>
-</section>
+      <section>
+        <div class="act">Acto VI · El plan</div>
+        <h2>Doce meses en tres olas, con condiciones para frenar</h2>
+        <p class="lede">
+          El orden no sigue al índice, y eso es deliberado.
+          <b>La ola 1 prioriza certeza sobre puntaje</b>: Córdoba y Rosario son
+          los mercados más grandes, tienen los tres bloques de datos completos y
+          sirven de piloto operativo para el prendario. Tucumán, que lidera el
+          índice, va última — precisamente porque es la que peor podemos medir.
+        </p>
+        <div class="tl" id="tl"></div>
+        <div class="note">
+          <b>Qué hacemos si la ola 1 no llega.</b> Si a los seis meses Córdoba y
+          Rosario no alcanzan el umbral de activaciones, no se abre la ola 2: se
+          reasigna el presupuesto a canal digital en esas mismas plazas y se
+          reevalúa si el problema es la plaza o el modelo de sucursal. El plan
+          tiene freno, y ese freno es lo que lo vuelve defendible ante un
+          directorio.
+        </div>
+      </section>
     </div>
   </section>
 
   <section class="slide" id="slide-9" data-index="9">
     <div class="wrap">
-<section style="border-bottom:0">
-  <div class="act">Cierre</div>
-  <h2 style="max-width:26ch">Seis sucursales, arrancando por Córdoba en el mes 1</h2>
-  <p class="lede">Córdoba y Rosario en los meses 1 y 3. Neuquén y Santa Fe en los meses 5 y 7, si la ola 1 pasa los gates. Tucumán y Salta en los meses 9 y 11, con datos que hoy no tenemos.</p>
-  <p class="lede"><b>Prendario donde hay ingreso y empleo registrado</b> —Neuquén y Córdoba encabezan— y <b>personal de monto bajo donde hay demanda y perfil más flojo</b>, que es Tucumán, Salta y Santa Fe. Rosario admite las dos líneas.</p>
-  <p class="lede">El riesgo principal no es elegir mal la plaza: es que el 26,7% del mercado no tenga historial crediticio y el modelo de riesgo de Kredo esté calibrado en otros países. Por eso el plan empieza con dos aperturas y no con seis.</p>
-  <div class="kpis" id="kpis2" style="margin-top:34px"></div>
-</section>
-<footer>
-  Elaborado sobre las cuatro tablas de Equifax (674.546 personas, 47 códigos postales), la población del Censo 2022 y la tabla de localizaciones de la competencia. Las variables <code>distancia_estimada_polo_comercial_km</code> y <code>segmento_comportamiento_retail</code> se descartaron por falta de señal: son uniformes en las 47 plazas. Los indicadores de ingreso, laboral y score se calculan siempre sobre la población con dato, y la cobertura se informa junto al valor.
-</footer>
+      <section style="border-bottom: 0">
+        <div class="act">Cierre</div>
+        <h2 style="max-width: 26ch">
+          Seis sucursales, arrancando por Córdoba en el mes 1
+        </h2>
+        <p class="lede">
+          Córdoba y Rosario en los meses 1 y 3. Neuquén y Santa Fe en los meses
+          5 y 7, si la ola 1 pasa los gates. Tucumán y Salta en los meses 9 y
+          11, con datos que hoy no tenemos.
+        </p>
+        <div class="kpis" id="kpis2" style="margin-top: 34px"></div>
+      </section>
+      <footer>
+        Elaborado sobre las cuatro tablas de Equifax (674.546 personas, 47
+        códigos postales), la población del Censo 2022 y la tabla de
+        localizaciones de la competencia. Las variables
+        <code>distancia_estimada_polo_comercial_km</code> y
+        <code>segmento_comportamiento_retail</code> se descartaron por falta de
+        señal: son uniformes en las 47 plazas. Los indicadores de ingreso,
+        laboral y score se calculan siempre sobre la población con dato, y la
+        cobertura se informa junto al valor.
+      </footer>
     </div>
   </section>
 </div>
@@ -354,251 +1117,1809 @@
 </div>
 
 <script>
-const D = {"plazas":[{"cp":"4000","n":"San Miguel de Tucumán","pd":"Capital","pr":"Tucumán","amba":false,"hab":590342,"mu":39258,"md":278396,"pen":0.0665,"ed":44.8,"dem":0.4716,"hit":0.75,"thin":0.25,"lin":2.45,"nue":0.1989,"sco":0.5169,"ing":0.1314,"dep":0.151,"cs":0.005,"ci":0.004,"cl":0.997,"comp":0,"d":[0.7427,0.7768,null,null,1.0],"sel":1,"ola":3,"mes":9},{"cp":"8300","n":"Neuquén","pd":"Confluencia","pr":"Neuquén","amba":false,"hab":468794,"mu":19307,"md":218724,"pen":0.0412,"ed":45.0,"dem":0.4666,"hit":0.8259,"thin":0.1741,"lin":2.76,"nue":0.1634,"sco":0.5313,"ing":0.2605,"dep":0.2024,"cs":0.999,"ci":0.998,"cl":0.004,"comp":0,"d":[0.6793,0.7429,0.4973,0.6845,1.0],"sel":1,"ola":2,"mes":5},{"cp":"5000","n":"Córdoba","pd":"Capital","pr":"Córdoba","amba":false,"hab":1505250,"mu":86696,"md":680450,"pen":0.0576,"ed":45.2,"dem":0.4521,"hit":0.7549,"thin":0.2451,"lin":2.16,"nue":0.1368,"sco":0.5348,"ing":0.19,"dep":0.2101,"cs":1.0,"ci":0.998,"cl":0.998,"comp":1,"d":[1.0,0.645,0.5029,0.4341,0.5],"sel":1,"ola":1,"mes":1},{"cp":"2000","n":"Rosario","pd":"Rosario","pr":"Santa Fe","amba":false,"hab":1348725,"mu":69061,"md":567738,"pen":0.0512,"ed":45.8,"dem":0.4209,"hit":0.7375,"thin":0.2625,"lin":2.25,"nue":0.1365,"sco":0.6129,"ing":0.2065,"dep":0.2238,"cs":0.999,"ci":0.998,"cl":0.997,"comp":0,"d":[0.9698,0.435,0.6252,0.4924,1.0],"sel":1,"ola":1,"mes":3},{"cp":"3000","n":"Santa Fe","pd":"La Capital","pr":"Santa Fe","amba":false,"hab":572265,"mu":26097,"md":250707,"pen":0.0456,"ed":45.0,"dem":0.4381,"hit":0.7552,"thin":0.2448,"lin":2.39,"nue":0.1283,"sco":0.54,"ing":0.1814,"dep":0.168,"cs":0.999,"ci":0.998,"cl":0.997,"comp":0,"d":[0.7341,0.5508,0.5111,0.4034,1.0],"sel":1,"ola":2,"mes":7},{"cp":"1704","n":"Ramos Mejía","pd":"La Matanza","pr":"Buenos Aires","amba":true,"hab":109081,"mu":4544,"md":47387,"pen":0.0417,"ed":48.2,"dem":0.4344,"hit":0.7317,"thin":0.2683,"lin":2.28,"nue":0.1472,"sco":0.7851,"ing":0.2892,"dep":0.1111,"cs":0.999,"ci":0.998,"cl":0.002,"comp":0,"d":[0.2785,0.526,0.895,0.7863,1.0],"sel":0,"ola":0,"mes":0},{"cp":"5300","n":"La Rioja","pd":"Capital","pr":"La Rioja","amba":false,"hab":211651,"mu":8812,"md":106810,"pen":0.0416,"ed":44.3,"dem":0.5047,"hit":0.8163,"thin":0.1837,"lin":2.58,"nue":0.1347,"sco":0.3741,"ing":0.1242,"dep":0.1325,"cs":1.0,"ci":0.998,"cl":0.998,"comp":0,"d":[0.4607,1.0,0.2511,0.2004,1.0],"sel":0,"ola":0,"mes":0},{"cp":"4400","n":"Salta","pd":"Capital","pr":"Salta","amba":false,"hab":627704,"mu":35636,"md":265571,"pen":0.0568,"ed":44.0,"dem":0.4231,"hit":0.721,"thin":0.279,"lin":2.4,"nue":0.1963,"sco":0.4603,"ing":0.1132,"dep":0.158,"cs":0.999,"ci":0.004,"cl":0.998,"comp":0,"d":[0.7595,0.4495,0.3861,null,1.0],"sel":1,"ola":3,"mes":11},{"cp":"3500","n":"Resistencia","pd":"San Fernando","pr":"Chaco","amba":false,"hab":416140,"mu":21080,"md":199877,"pen":0.0507,"ed":43.2,"dem":0.4803,"hit":0.765,"thin":0.235,"lin":2.13,"nue":0.1213,"sco":0.3684,"ing":0.1063,"dep":0.2165,"cs":1.0,"ci":0.997,"cl":0.005,"comp":0,"d":[0.6465,0.8357,0.2422,0.1368,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1900","n":"La Plata","pd":"La Plata","pr":"Buenos Aires","amba":false,"hab":755233,"mu":36610,"md":286951,"pen":0.0485,"ed":47.1,"dem":0.38,"hit":0.7303,"thin":0.2697,"lin":1.9,"nue":0.1086,"sco":0.6849,"ing":0.1132,"dep":0.1676,"cs":1.0,"ci":0.004,"cl":0.998,"comp":0,"d":[0.8104,0.1584,0.738,null,1.0],"sel":0,"ola":0,"mes":0},{"cp":"7600","n":"Mar del Plata","pd":"General Pueyrredón","pr":"Buenos Aires","amba":false,"hab":667082,"mu":47043,"md":266595,"pen":0.0705,"ed":46.4,"dem":0.3996,"hit":0.6815,"thin":0.3185,"lin":1.88,"nue":0.1146,"sco":0.6058,"ing":0.1748,"dep":0.1955,"cs":0.999,"ci":0.998,"cl":0.997,"comp":0,"d":[0.7763,0.2913,0.6141,0.3798,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1429","n":"Núñez","pd":"Comuna 13","pr":"CABA","amba":true,"hab":102288,"mu":7123,"md":41530,"pen":0.0696,"ed":49.3,"dem":0.406,"hit":0.7386,"thin":0.2614,"lin":2.44,"nue":0.1405,"sco":0.8398,"ing":0.3494,"dep":0.2451,"cs":0.999,"ci":0.998,"cl":0.998,"comp":1,"d":[0.2608,0.3342,0.9808,1.0,0.5],"sel":0,"ola":0,"mes":0},{"cp":"1824","n":"Lanús Oeste","pd":"Lanús","pr":"Buenos Aires","amba":true,"hab":215823,"mu":18044,"md":90176,"pen":0.0836,"ed":47.3,"dem":0.4178,"hit":0.7185,"thin":0.2814,"lin":2.13,"nue":0.138,"sco":0.6032,"ing":0.2149,"dep":0.1798,"cs":0.999,"ci":0.997,"cl":0.005,"comp":0,"d":[0.4661,0.414,0.61,0.5224,1.0],"sel":0,"ola":0,"mes":0},{"cp":"2800","n":"Zárate","pd":"Zárate","pr":"Buenos Aires","amba":false,"hab":109443,"mu":7209,"md":49871,"pen":0.0659,"ed":44.3,"dem":0.4557,"hit":0.7525,"thin":0.2475,"lin":2.21,"nue":0.148,"sco":0.5182,"ing":0.2167,"dep":0.2708,"cs":1.0,"ci":0.997,"cl":0.997,"comp":0,"d":[0.2794,0.6695,0.4769,0.5287,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1405","n":"Caballito","pd":"Comuna 6","pr":"CABA","amba":true,"hab":40605,"mu":4380,"md":17002,"pen":0.1079,"ed":49.3,"dem":0.4187,"hit":0.7603,"thin":0.2397,"lin":2.53,"nue":0.1461,"sco":0.8422,"ing":0.3447,"dep":0.375,"cs":1.0,"ci":0.998,"cl":0.002,"comp":0,"d":[0.0068,0.42,0.9846,0.9834,1.0],"sel":0,"ola":0,"mes":0},{"cp":"3400","n":"Corrientes","pd":"Capital","pr":"Corrientes","amba":false,"hab":439270,"mu":22120,"md":197374,"pen":0.0504,"ed":44.3,"dem":0.4493,"hit":0.7638,"thin":0.2362,"lin":2.12,"nue":0.127,"sco":0.4402,"ing":0.1247,"dep":0.2727,"cs":1.0,"ci":0.998,"cl":0.004,"comp":1,"d":[0.6614,0.6266,0.3546,0.202,0.5],"sel":0,"ola":0,"mes":0},{"cp":"1888","n":"Florencio Varela","pd":"Florencio Varela","pr":"Buenos Aires","amba":true,"hab":488103,"mu":19712,"md":216071,"pen":0.0404,"ed":42.7,"dem":0.4427,"hit":0.7353,"thin":0.2647,"lin":1.98,"nue":0.1266,"sco":0.3371,"ing":0.1134,"dep":0.1184,"cs":1.0,"ci":0.998,"cl":0.004,"comp":0,"d":[0.6904,0.5817,0.193,0.1617,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1407","n":"Parque Avellaneda","pd":"Comuna 9","pr":"CABA","amba":true,"hab":242181,"mu":16007,"md":92231,"pen":0.0661,"ed":48.1,"dem":0.3808,"hit":0.66,"thin":0.34,"lin":1.97,"nue":0.1233,"sco":0.7207,"ing":0.238,"dep":0.1,"cs":0.999,"ci":0.998,"cl":0.004,"comp":0,"d":[0.4977,0.1643,0.7941,0.6045,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1665","n":"José C. Paz","pd":"José C. Paz","pr":"Buenos Aires","amba":true,"hab":295236,"mu":10595,"md":134089,"pen":0.0359,"ed":42.7,"dem":0.4542,"hit":0.7489,"thin":0.2511,"lin":2.11,"nue":0.1494,"sco":0.3209,"ing":0.1269,"dep":0.2085,"cs":0.999,"ci":0.998,"cl":0.998,"comp":0,"d":[0.5522,0.6593,0.1677,0.2099,1.0],"sel":0,"ola":0,"mes":0},{"cp":"8000","n":"Bahía Blanca","pd":"Bahía Blanca","pr":"Buenos Aires","amba":false,"hab":336557,"mu":20559,"md":134358,"pen":0.0611,"ed":46.6,"dem":0.3992,"hit":0.7271,"thin":0.2728,"lin":2.08,"nue":0.1113,"sco":0.6121,"ing":0.2133,"dep":0.2325,"cs":0.999,"ci":0.998,"cl":0.997,"comp":1,"d":[0.5882,0.2884,0.624,0.5169,0.5],"sel":0,"ola":0,"mes":0},{"cp":"1430","n":"Villa Urquiza","pd":"Comuna 12","pr":"CABA","amba":true,"hab":78368,"mu":1672,"md":30419,"pen":0.0213,"ed":47.4,"dem":0.3882,"hit":0.7171,"thin":0.2829,"lin":2.21,"nue":0.1274,"sco":0.7864,"ing":0.3024,"dep":0.2554,"cs":0.999,"ci":0.999,"cl":0.998,"comp":0,"d":[0.1876,0.2138,0.8971,0.8331,1.0],"sel":0,"ola":0,"mes":0},{"cp":"2300","n":"Rafaela","pd":"Castellanos","pr":"Santa Fe","amba":false,"hab":190577,"mu":2090,"md":77325,"pen":0.011,"ed":38.9,"dem":0.4057,"hit":0.733,"thin":0.267,"lin":2.15,"nue":0.1373,"sco":0.5586,"ing":0.2102,"dep":0.2759,"cs":1.0,"ci":0.997,"cl":0.997,"comp":0,"d":[0.4319,0.3324,0.5402,0.5056,1.0],"sel":0,"ola":0,"mes":0},{"cp":"5730","n":"Villa Mercedes","pd":"General Pedernera","pr":"San Luis","amba":false,"hab":148875,"mu":7869,"md":68885,"pen":0.0529,"ed":42.6,"dem":0.4627,"hit":0.7771,"thin":0.2229,"lin":2.28,"nue":0.1328,"sco":0.3662,"ing":0.1288,"dep":0.1674,"cs":0.999,"ci":0.998,"cl":0.997,"comp":0,"d":[0.364,0.7169,0.2387,0.2165,1.0],"sel":0,"ola":0,"mes":0},{"cp":"2804","n":"Campana","pd":"Campana","pr":"Buenos Aires","amba":false,"hab":97991,"mu":1836,"md":44406,"pen":0.0187,"ed":39.8,"dem":0.4532,"hit":0.7375,"thin":0.2625,"lin":2.03,"nue":0.122,"sco":0.4264,"ing":0.2058,"dep":0.2994,"cs":0.999,"ci":0.995,"cl":0.995,"comp":0,"d":[0.249,0.6525,0.333,0.4901,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1722","n":"Merlo","pd":"Merlo","pr":"Buenos Aires","amba":true,"hab":289536,"mu":10484,"md":124138,"pen":0.0362,"ed":43.5,"dem":0.4287,"hit":0.7243,"thin":0.2757,"lin":2.0,"nue":0.1342,"sco":0.373,"ing":0.1291,"dep":0.1865,"cs":1.0,"ci":0.998,"cl":0.997,"comp":0,"d":[0.5468,0.4877,0.2493,0.2177,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1678","n":"Caseros","pd":"Tres de Febrero","pr":"Buenos Aires","amba":true,"hab":98221,"mu":2053,"md":41767,"pen":0.0209,"ed":44.2,"dem":0.4252,"hit":0.7487,"thin":0.2513,"lin":2.13,"nue":0.1276,"sco":0.549,"ing":0.2144,"dep":0.279,"cs":0.999,"ci":0.998,"cl":0.999,"comp":0,"d":[0.2496,0.464,0.5251,0.5205,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1427","n":"Villa Ortúzar","pd":"Comuna 15","pr":"CABA","amba":true,"hab":78646,"mu":1523,"md":31293,"pen":0.0194,"ed":45.1,"dem":0.3979,"hit":0.7223,"thin":0.2777,"lin":2.25,"nue":0.1333,"sco":0.7221,"ing":0.2526,"dep":0.2708,"cs":0.999,"ci":0.998,"cl":0.997,"comp":0,"d":[0.1885,0.2795,0.7963,0.6564,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1408","n":"Liniers","pd":"Comuna 9","pr":"CABA","amba":true,"hab":39614,"mu":4110,"md":16347,"pen":0.1038,"ed":49.1,"dem":0.4127,"hit":0.7202,"thin":0.2798,"lin":2.22,"nue":0.1406,"sco":0.761,"ing":0.281,"dep":0.0909,"cs":1.0,"ci":1.0,"cl":0.003,"comp":0,"d":[0.0,0.3791,0.8573,0.7572,1.0],"sel":0,"ola":0,"mes":0},{"cp":"8400","n":"San Carlos de Bariloche","pd":"Bariloche","pr":"Río Negro","amba":false,"hab":162088,"mu":5114,"md":62832,"pen":0.0316,"ed":45.2,"dem":0.3876,"hit":0.7955,"thin":0.2043,"lin":2.68,"nue":0.1913,"sco":0.6117,"ing":0.221,"dep":0.1429,"cs":0.999,"ci":0.998,"cl":0.003,"comp":0,"d":[0.3873,0.2103,0.6234,0.5441,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1744","n":"Moreno","pd":"Moreno","pr":"Buenos Aires","amba":true,"hab":195044,"mu":18787,"md":84897,"pen":0.0963,"ed":42.1,"dem":0.4353,"hit":0.736,"thin":0.2639,"lin":1.95,"nue":0.1275,"sco":0.3469,"ing":0.1208,"dep":0.2195,"cs":1.0,"ci":0.998,"cl":0.004,"comp":0,"d":[0.4382,0.5317,0.2083,0.1882,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1406","n":"Flores","pd":"Comuna 7","pr":"CABA","amba":true,"hab":110829,"mu":20627,"md":40679,"pen":0.1861,"ed":47.4,"dem":0.367,"hit":0.6313,"thin":0.3687,"lin":1.91,"nue":0.1188,"sco":0.7625,"ing":0.2339,"dep":0.2003,"cs":1.0,"ci":0.998,"cl":0.998,"comp":0,"d":[0.2828,0.0713,0.8597,0.59,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1712","n":"Castelar","pd":"Morón","pr":"Buenos Aires","amba":true,"hab":110684,"mu":7098,"md":45378,"pen":0.0641,"ed":46.5,"dem":0.41,"hit":0.7299,"thin":0.2701,"lin":2.09,"nue":0.1337,"sco":0.5532,"ing":0.2226,"dep":0.2234,"cs":0.007,"ci":0.997,"cl":0.997,"comp":0,"d":[0.2825,0.361,null,0.5498,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1615","n":"Grand Bourg","pd":"Malvinas Argentinas","pr":"Buenos Aires","amba":true,"hab":88891,"mu":2183,"md":41086,"pen":0.0246,"ed":37.2,"dem":0.4622,"hit":0.7407,"thin":0.2593,"lin":1.9,"nue":0.1241,"sco":0.2739,"ing":0.1298,"dep":0.2868,"cs":0.999,"ci":0.995,"cl":0.997,"comp":0,"d":[0.2222,0.7135,0.094,0.22,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1686","n":"Hurlingham","pd":"Hurlingham","pr":"Buenos Aires","amba":true,"hab":62040,"mu":4738,"md":26411,"pen":0.0764,"ed":45.5,"dem":0.4257,"hit":0.7385,"thin":0.2615,"lin":2.16,"nue":0.1461,"sco":0.5182,"ing":0.1845,"dep":0.1667,"cs":1.0,"ci":0.997,"cl":0.003,"comp":0,"d":[0.1233,0.4672,0.4768,0.4145,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1763","n":"Virrey del Pino","pd":"La Matanza","pr":"Buenos Aires","amba":true,"hab":207478,"mu":2202,"md":91584,"pen":0.0106,"ed":36.0,"dem":0.4414,"hit":0.6703,"thin":0.3297,"lin":1.46,"nue":0.0763,"sco":0.2139,"ing":0.0678,"dep":0.1752,"cs":1.0,"ci":0.998,"cl":0.998,"comp":0,"d":[0.4552,0.5732,0.0,0.0,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1653","n":"Villa Ballester","pd":"General San Martín","pr":"Buenos Aires","amba":true,"hab":40005,"mu":1768,"md":16722,"pen":0.0442,"ed":42.5,"dem":0.418,"hit":0.7212,"thin":0.2788,"lin":2.06,"nue":0.1222,"sco":0.5878,"ing":0.2216,"dep":0.2707,"cs":0.999,"ci":0.995,"cl":0.997,"comp":0,"d":[0.0027,0.4151,0.5859,0.5462,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1617","n":"General Pacheco","pd":"Tigre","pr":"Buenos Aires","amba":true,"hab":57183,"mu":2021,"md":24927,"pen":0.0353,"ed":39.6,"dem":0.4359,"hit":0.7135,"thin":0.2865,"lin":1.91,"nue":0.1212,"sco":0.4176,"ing":0.1832,"dep":0.2859,"cs":1.0,"ci":0.997,"cl":0.995,"comp":0,"d":[0.1009,0.5361,0.3192,0.4099,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1852","n":"Burzaco","pd":"Almirante Brown","pr":"Buenos Aires","amba":true,"hab":92915,"mu":2107,"md":38983,"pen":0.0227,"ed":39.8,"dem":0.4196,"hit":0.6944,"thin":0.3056,"lin":1.81,"nue":0.1068,"sco":0.4501,"ing":0.1423,"dep":0.238,"cs":1.0,"ci":0.997,"cl":0.995,"comp":0,"d":[0.2344,0.4257,0.3702,0.2646,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1609","n":"Boulogne","pd":"San Isidro","pr":"Buenos Aires","amba":true,"hab":76254,"mu":1692,"md":31096,"pen":0.0222,"ed":40.9,"dem":0.4078,"hit":0.7134,"thin":0.2866,"lin":1.92,"nue":0.1105,"sco":0.5041,"ing":0.1888,"dep":0.2761,"cs":1.0,"ci":0.999,"cl":0.998,"comp":0,"d":[0.18,0.3463,0.4548,0.4295,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1875","n":"Wilde","pd":"Avellaneda","pr":"Buenos Aires","amba":true,"hab":87414,"mu":1503,"md":34198,"pen":0.0172,"ed":43.7,"dem":0.3912,"hit":0.6933,"thin":0.3067,"lin":1.82,"nue":0.1018,"sco":0.5652,"ing":0.1858,"dep":0.243,"cs":0.999,"ci":0.999,"cl":0.999,"comp":0,"d":[0.2176,0.2344,0.5506,0.4189,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1752","n":"Lomas del Mirador","pd":"La Matanza","pr":"Buenos Aires","amba":true,"hab":60675,"mu":1597,"md":24506,"pen":0.0263,"ed":43.4,"dem":0.4039,"hit":0.6882,"thin":0.3118,"lin":1.69,"nue":0.1021,"sco":0.5548,"ing":0.1662,"dep":0.2254,"cs":1.0,"ci":0.998,"cl":0.997,"comp":0,"d":[0.1172,0.3199,0.5342,0.3496,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1613","n":"Los Polvorines","pd":"Malvinas Argentinas","pr":"Buenos Aires","amba":true,"hab":63293,"mu":1993,"md":27724,"pen":0.0315,"ed":38.8,"dem":0.438,"hit":0.723,"thin":0.277,"lin":1.93,"nue":0.1049,"sco":0.3131,"ing":0.1491,"dep":0.2645,"cs":1.0,"ci":0.996,"cl":0.996,"comp":0,"d":[0.1288,0.5504,0.1554,0.2887,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1425","n":"Palermo","pd":"Comuna 14","pr":"CABA","amba":true,"hab":81349,"mu":24311,"md":30795,"pen":0.2988,"ed":49.9,"dem":0.3786,"hit":0.7097,"thin":0.2903,"lin":2.34,"nue":0.1319,"sco":0.8521,"ing":0.1683,"dep":0.2072,"cs":1.0,"ci":0.004,"cl":0.998,"comp":2,"d":[0.1978,0.1489,1.0,null,0.0],"sel":0,"ola":0,"mes":0},{"cp":"1828","n":"Banfield","pd":"Lomas de Zamora","pr":"Buenos Aires","amba":true,"hab":61072,"mu":19210,"md":25185,"pen":0.3145,"ed":43.9,"dem":0.4124,"hit":0.6822,"thin":0.3178,"lin":1.83,"nue":0.1209,"sco":0.458,"ing":0.1433,"dep":0.1728,"cs":1.0,"ci":0.998,"cl":0.004,"comp":0,"d":[0.119,0.3773,0.3825,0.268,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1716","n":"Libertad","pd":"Merlo","pr":"Buenos Aires","amba":true,"hab":117049,"mu":2245,"md":49583,"pen":0.0192,"ed":38.3,"dem":0.4236,"hit":0.6904,"thin":0.3096,"lin":1.66,"nue":0.0976,"sco":0.2684,"ing":0.0987,"dep":0.1881,"cs":0.999,"ci":0.998,"cl":0.997,"comp":0,"d":[0.2978,0.453,0.0854,0.1095,1.0],"sel":0,"ola":0,"mes":0},{"cp":"1881","n":"San Francisco Solano","pd":"Quilmes","pr":"Buenos Aires","amba":true,"hab":93568,"mu":1862,"md":39598,"pen":0.0199,"ed":39.9,"dem":0.4232,"hit":0.6837,"thin":0.3163,"lin":1.74,"nue":0.0967,"sco":0.261,"ing":0.1052,"dep":0.2087,"cs":1.0,"ci":0.995,"cl":0.996,"comp":0,"d":[0.2363,0.4503,0.0738,0.1329,1.0],"sel":0,"ola":0,"mes":0},{"cp":"9100","n":"Trelew","pd":"Rawson","pr":"Chubut","amba":false,"hab":145763,"mu":1958,"md":51962,"pen":0.0134,"ed":40.6,"dem":0.3565,"hit":0.7441,"thin":0.2559,"lin":2.18,"nue":0.0965,"sco":0.4589,"ing":0.135,"dep":0.1786,"cs":0.999,"ci":0.998,"cl":0.998,"comp":0,"d":[0.3582,0.0,0.3839,0.2387,1.0],"sel":0,"ola":0,"mes":0}],"totales":{"hab":12477195,"mu":674546,"md":5364634,"plazas":47,"amba_plazas":29,"amba_hab":3683445,"comp":6,"comp_plazas":5,"completas":29},"dims":[{"k":"mercado","l":"Tamaño de mercado","d":"Población del censo 2022, en escala logarítmica","w":30},{"k":"demanda","l":"Demanda activa","d":"% que pidió financiamiento en los últimos 12 meses","w":30},{"k":"calidad","l":"Calidad de cartera","d":"% con score de riesgo alto o medio-alto","w":20},{"k":"ingreso","l":"Poder adquisitivo","d":"% en categoría de ingreso alto o medio-alto","w":12},{"k":"competencia","l":"Aire competitivo","d":"Inverso de la cantidad de sucursales rivales","w":8}],"escenarios":[{"l":"Base","w":[30,30,20,12,8]},{"l":"Prioriza tamaño","w":[50,20,15,10,5]},{"l":"Prioriza demanda","w":[20,50,15,10,5]},{"l":"Prioriza calidad","w":[20,20,40,15,5]},{"l":"Solo universales","w":[50,50,0,0,0]}]};
-const P = D.plazas, T = D.totales, DIMS = D.dims;
-const fmt = new Intl.NumberFormat('es-AR');
-const n0 = v => fmt.format(Math.round(v));
-const pc = (v,d=1) => v==null ? '—' : (v*100).toFixed(d).replace('.',',')+'%';
-const col = p => p.amba ? 'var(--amba)' : 'var(--inter)';
-let W = DIMS.map(d=>d.w);
+  const D = {
+    plazas: [
+      {
+        cp: "4000",
+        n: "San Miguel de Tucumán",
+        pd: "Capital",
+        pr: "Tucumán",
+        amba: false,
+        hab: 590342,
+        mu: 39258,
+        md: 278396,
+        pen: 0.0665,
+        ed: 44.8,
+        dem: 0.4716,
+        hit: 0.75,
+        thin: 0.25,
+        lin: 2.45,
+        nue: 0.1989,
+        sco: 0.5169,
+        ing: 0.1314,
+        dep: 0.151,
+        cs: 0.005,
+        ci: 0.004,
+        cl: 0.997,
+        comp: 0,
+        d: [0.7427, 0.7768, null, null, 1.0],
+        sel: 1,
+        ola: 3,
+        mes: 9,
+      },
+      {
+        cp: "8300",
+        n: "Neuquén",
+        pd: "Confluencia",
+        pr: "Neuquén",
+        amba: false,
+        hab: 468794,
+        mu: 19307,
+        md: 218724,
+        pen: 0.0412,
+        ed: 45.0,
+        dem: 0.4666,
+        hit: 0.8259,
+        thin: 0.1741,
+        lin: 2.76,
+        nue: 0.1634,
+        sco: 0.5313,
+        ing: 0.2605,
+        dep: 0.2024,
+        cs: 0.999,
+        ci: 0.998,
+        cl: 0.004,
+        comp: 0,
+        d: [0.6793, 0.7429, 0.4973, 0.6845, 1.0],
+        sel: 1,
+        ola: 2,
+        mes: 5,
+      },
+      {
+        cp: "5000",
+        n: "Córdoba",
+        pd: "Capital",
+        pr: "Córdoba",
+        amba: false,
+        hab: 1505250,
+        mu: 86696,
+        md: 680450,
+        pen: 0.0576,
+        ed: 45.2,
+        dem: 0.4521,
+        hit: 0.7549,
+        thin: 0.2451,
+        lin: 2.16,
+        nue: 0.1368,
+        sco: 0.5348,
+        ing: 0.19,
+        dep: 0.2101,
+        cs: 1.0,
+        ci: 0.998,
+        cl: 0.998,
+        comp: 1,
+        d: [1.0, 0.645, 0.5029, 0.4341, 0.5],
+        sel: 1,
+        ola: 1,
+        mes: 1,
+      },
+      {
+        cp: "2000",
+        n: "Rosario",
+        pd: "Rosario",
+        pr: "Santa Fe",
+        amba: false,
+        hab: 1348725,
+        mu: 69061,
+        md: 567738,
+        pen: 0.0512,
+        ed: 45.8,
+        dem: 0.4209,
+        hit: 0.7375,
+        thin: 0.2625,
+        lin: 2.25,
+        nue: 0.1365,
+        sco: 0.6129,
+        ing: 0.2065,
+        dep: 0.2238,
+        cs: 0.999,
+        ci: 0.998,
+        cl: 0.997,
+        comp: 0,
+        d: [0.9698, 0.435, 0.6252, 0.4924, 1.0],
+        sel: 1,
+        ola: 1,
+        mes: 3,
+      },
+      {
+        cp: "3000",
+        n: "Santa Fe",
+        pd: "La Capital",
+        pr: "Santa Fe",
+        amba: false,
+        hab: 572265,
+        mu: 26097,
+        md: 250707,
+        pen: 0.0456,
+        ed: 45.0,
+        dem: 0.4381,
+        hit: 0.7552,
+        thin: 0.2448,
+        lin: 2.39,
+        nue: 0.1283,
+        sco: 0.54,
+        ing: 0.1814,
+        dep: 0.168,
+        cs: 0.999,
+        ci: 0.998,
+        cl: 0.997,
+        comp: 0,
+        d: [0.7341, 0.5508, 0.5111, 0.4034, 1.0],
+        sel: 1,
+        ola: 2,
+        mes: 7,
+      },
+      {
+        cp: "1704",
+        n: "Ramos Mejía",
+        pd: "La Matanza",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 109081,
+        mu: 4544,
+        md: 47387,
+        pen: 0.0417,
+        ed: 48.2,
+        dem: 0.4344,
+        hit: 0.7317,
+        thin: 0.2683,
+        lin: 2.28,
+        nue: 0.1472,
+        sco: 0.7851,
+        ing: 0.2892,
+        dep: 0.1111,
+        cs: 0.999,
+        ci: 0.998,
+        cl: 0.002,
+        comp: 0,
+        d: [0.2785, 0.526, 0.895, 0.7863, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "5300",
+        n: "La Rioja",
+        pd: "Capital",
+        pr: "La Rioja",
+        amba: false,
+        hab: 211651,
+        mu: 8812,
+        md: 106810,
+        pen: 0.0416,
+        ed: 44.3,
+        dem: 0.5047,
+        hit: 0.8163,
+        thin: 0.1837,
+        lin: 2.58,
+        nue: 0.1347,
+        sco: 0.3741,
+        ing: 0.1242,
+        dep: 0.1325,
+        cs: 1.0,
+        ci: 0.998,
+        cl: 0.998,
+        comp: 0,
+        d: [0.4607, 1.0, 0.2511, 0.2004, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "4400",
+        n: "Salta",
+        pd: "Capital",
+        pr: "Salta",
+        amba: false,
+        hab: 627704,
+        mu: 35636,
+        md: 265571,
+        pen: 0.0568,
+        ed: 44.0,
+        dem: 0.4231,
+        hit: 0.721,
+        thin: 0.279,
+        lin: 2.4,
+        nue: 0.1963,
+        sco: 0.4603,
+        ing: 0.1132,
+        dep: 0.158,
+        cs: 0.999,
+        ci: 0.004,
+        cl: 0.998,
+        comp: 0,
+        d: [0.7595, 0.4495, 0.3861, null, 1.0],
+        sel: 1,
+        ola: 3,
+        mes: 11,
+      },
+      {
+        cp: "3500",
+        n: "Resistencia",
+        pd: "San Fernando",
+        pr: "Chaco",
+        amba: false,
+        hab: 416140,
+        mu: 21080,
+        md: 199877,
+        pen: 0.0507,
+        ed: 43.2,
+        dem: 0.4803,
+        hit: 0.765,
+        thin: 0.235,
+        lin: 2.13,
+        nue: 0.1213,
+        sco: 0.3684,
+        ing: 0.1063,
+        dep: 0.2165,
+        cs: 1.0,
+        ci: 0.997,
+        cl: 0.005,
+        comp: 0,
+        d: [0.6465, 0.8357, 0.2422, 0.1368, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1900",
+        n: "La Plata",
+        pd: "La Plata",
+        pr: "Buenos Aires",
+        amba: false,
+        hab: 755233,
+        mu: 36610,
+        md: 286951,
+        pen: 0.0485,
+        ed: 47.1,
+        dem: 0.38,
+        hit: 0.7303,
+        thin: 0.2697,
+        lin: 1.9,
+        nue: 0.1086,
+        sco: 0.6849,
+        ing: 0.1132,
+        dep: 0.1676,
+        cs: 1.0,
+        ci: 0.004,
+        cl: 0.998,
+        comp: 0,
+        d: [0.8104, 0.1584, 0.738, null, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "7600",
+        n: "Mar del Plata",
+        pd: "General Pueyrredón",
+        pr: "Buenos Aires",
+        amba: false,
+        hab: 667082,
+        mu: 47043,
+        md: 266595,
+        pen: 0.0705,
+        ed: 46.4,
+        dem: 0.3996,
+        hit: 0.6815,
+        thin: 0.3185,
+        lin: 1.88,
+        nue: 0.1146,
+        sco: 0.6058,
+        ing: 0.1748,
+        dep: 0.1955,
+        cs: 0.999,
+        ci: 0.998,
+        cl: 0.997,
+        comp: 0,
+        d: [0.7763, 0.2913, 0.6141, 0.3798, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1429",
+        n: "Núñez",
+        pd: "Comuna 13",
+        pr: "CABA",
+        amba: true,
+        hab: 102288,
+        mu: 7123,
+        md: 41530,
+        pen: 0.0696,
+        ed: 49.3,
+        dem: 0.406,
+        hit: 0.7386,
+        thin: 0.2614,
+        lin: 2.44,
+        nue: 0.1405,
+        sco: 0.8398,
+        ing: 0.3494,
+        dep: 0.2451,
+        cs: 0.999,
+        ci: 0.998,
+        cl: 0.998,
+        comp: 1,
+        d: [0.2608, 0.3342, 0.9808, 1.0, 0.5],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1824",
+        n: "Lanús Oeste",
+        pd: "Lanús",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 215823,
+        mu: 18044,
+        md: 90176,
+        pen: 0.0836,
+        ed: 47.3,
+        dem: 0.4178,
+        hit: 0.7185,
+        thin: 0.2814,
+        lin: 2.13,
+        nue: 0.138,
+        sco: 0.6032,
+        ing: 0.2149,
+        dep: 0.1798,
+        cs: 0.999,
+        ci: 0.997,
+        cl: 0.005,
+        comp: 0,
+        d: [0.4661, 0.414, 0.61, 0.5224, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "2800",
+        n: "Zárate",
+        pd: "Zárate",
+        pr: "Buenos Aires",
+        amba: false,
+        hab: 109443,
+        mu: 7209,
+        md: 49871,
+        pen: 0.0659,
+        ed: 44.3,
+        dem: 0.4557,
+        hit: 0.7525,
+        thin: 0.2475,
+        lin: 2.21,
+        nue: 0.148,
+        sco: 0.5182,
+        ing: 0.2167,
+        dep: 0.2708,
+        cs: 1.0,
+        ci: 0.997,
+        cl: 0.997,
+        comp: 0,
+        d: [0.2794, 0.6695, 0.4769, 0.5287, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1405",
+        n: "Caballito",
+        pd: "Comuna 6",
+        pr: "CABA",
+        amba: true,
+        hab: 40605,
+        mu: 4380,
+        md: 17002,
+        pen: 0.1079,
+        ed: 49.3,
+        dem: 0.4187,
+        hit: 0.7603,
+        thin: 0.2397,
+        lin: 2.53,
+        nue: 0.1461,
+        sco: 0.8422,
+        ing: 0.3447,
+        dep: 0.375,
+        cs: 1.0,
+        ci: 0.998,
+        cl: 0.002,
+        comp: 0,
+        d: [0.0068, 0.42, 0.9846, 0.9834, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "3400",
+        n: "Corrientes",
+        pd: "Capital",
+        pr: "Corrientes",
+        amba: false,
+        hab: 439270,
+        mu: 22120,
+        md: 197374,
+        pen: 0.0504,
+        ed: 44.3,
+        dem: 0.4493,
+        hit: 0.7638,
+        thin: 0.2362,
+        lin: 2.12,
+        nue: 0.127,
+        sco: 0.4402,
+        ing: 0.1247,
+        dep: 0.2727,
+        cs: 1.0,
+        ci: 0.998,
+        cl: 0.004,
+        comp: 1,
+        d: [0.6614, 0.6266, 0.3546, 0.202, 0.5],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1888",
+        n: "Florencio Varela",
+        pd: "Florencio Varela",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 488103,
+        mu: 19712,
+        md: 216071,
+        pen: 0.0404,
+        ed: 42.7,
+        dem: 0.4427,
+        hit: 0.7353,
+        thin: 0.2647,
+        lin: 1.98,
+        nue: 0.1266,
+        sco: 0.3371,
+        ing: 0.1134,
+        dep: 0.1184,
+        cs: 1.0,
+        ci: 0.998,
+        cl: 0.004,
+        comp: 0,
+        d: [0.6904, 0.5817, 0.193, 0.1617, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1407",
+        n: "Parque Avellaneda",
+        pd: "Comuna 9",
+        pr: "CABA",
+        amba: true,
+        hab: 242181,
+        mu: 16007,
+        md: 92231,
+        pen: 0.0661,
+        ed: 48.1,
+        dem: 0.3808,
+        hit: 0.66,
+        thin: 0.34,
+        lin: 1.97,
+        nue: 0.1233,
+        sco: 0.7207,
+        ing: 0.238,
+        dep: 0.1,
+        cs: 0.999,
+        ci: 0.998,
+        cl: 0.004,
+        comp: 0,
+        d: [0.4977, 0.1643, 0.7941, 0.6045, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1665",
+        n: "José C. Paz",
+        pd: "José C. Paz",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 295236,
+        mu: 10595,
+        md: 134089,
+        pen: 0.0359,
+        ed: 42.7,
+        dem: 0.4542,
+        hit: 0.7489,
+        thin: 0.2511,
+        lin: 2.11,
+        nue: 0.1494,
+        sco: 0.3209,
+        ing: 0.1269,
+        dep: 0.2085,
+        cs: 0.999,
+        ci: 0.998,
+        cl: 0.998,
+        comp: 0,
+        d: [0.5522, 0.6593, 0.1677, 0.2099, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "8000",
+        n: "Bahía Blanca",
+        pd: "Bahía Blanca",
+        pr: "Buenos Aires",
+        amba: false,
+        hab: 336557,
+        mu: 20559,
+        md: 134358,
+        pen: 0.0611,
+        ed: 46.6,
+        dem: 0.3992,
+        hit: 0.7271,
+        thin: 0.2728,
+        lin: 2.08,
+        nue: 0.1113,
+        sco: 0.6121,
+        ing: 0.2133,
+        dep: 0.2325,
+        cs: 0.999,
+        ci: 0.998,
+        cl: 0.997,
+        comp: 1,
+        d: [0.5882, 0.2884, 0.624, 0.5169, 0.5],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1430",
+        n: "Villa Urquiza",
+        pd: "Comuna 12",
+        pr: "CABA",
+        amba: true,
+        hab: 78368,
+        mu: 1672,
+        md: 30419,
+        pen: 0.0213,
+        ed: 47.4,
+        dem: 0.3882,
+        hit: 0.7171,
+        thin: 0.2829,
+        lin: 2.21,
+        nue: 0.1274,
+        sco: 0.7864,
+        ing: 0.3024,
+        dep: 0.2554,
+        cs: 0.999,
+        ci: 0.999,
+        cl: 0.998,
+        comp: 0,
+        d: [0.1876, 0.2138, 0.8971, 0.8331, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "2300",
+        n: "Rafaela",
+        pd: "Castellanos",
+        pr: "Santa Fe",
+        amba: false,
+        hab: 190577,
+        mu: 2090,
+        md: 77325,
+        pen: 0.011,
+        ed: 38.9,
+        dem: 0.4057,
+        hit: 0.733,
+        thin: 0.267,
+        lin: 2.15,
+        nue: 0.1373,
+        sco: 0.5586,
+        ing: 0.2102,
+        dep: 0.2759,
+        cs: 1.0,
+        ci: 0.997,
+        cl: 0.997,
+        comp: 0,
+        d: [0.4319, 0.3324, 0.5402, 0.5056, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "5730",
+        n: "Villa Mercedes",
+        pd: "General Pedernera",
+        pr: "San Luis",
+        amba: false,
+        hab: 148875,
+        mu: 7869,
+        md: 68885,
+        pen: 0.0529,
+        ed: 42.6,
+        dem: 0.4627,
+        hit: 0.7771,
+        thin: 0.2229,
+        lin: 2.28,
+        nue: 0.1328,
+        sco: 0.3662,
+        ing: 0.1288,
+        dep: 0.1674,
+        cs: 0.999,
+        ci: 0.998,
+        cl: 0.997,
+        comp: 0,
+        d: [0.364, 0.7169, 0.2387, 0.2165, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "2804",
+        n: "Campana",
+        pd: "Campana",
+        pr: "Buenos Aires",
+        amba: false,
+        hab: 97991,
+        mu: 1836,
+        md: 44406,
+        pen: 0.0187,
+        ed: 39.8,
+        dem: 0.4532,
+        hit: 0.7375,
+        thin: 0.2625,
+        lin: 2.03,
+        nue: 0.122,
+        sco: 0.4264,
+        ing: 0.2058,
+        dep: 0.2994,
+        cs: 0.999,
+        ci: 0.995,
+        cl: 0.995,
+        comp: 0,
+        d: [0.249, 0.6525, 0.333, 0.4901, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1722",
+        n: "Merlo",
+        pd: "Merlo",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 289536,
+        mu: 10484,
+        md: 124138,
+        pen: 0.0362,
+        ed: 43.5,
+        dem: 0.4287,
+        hit: 0.7243,
+        thin: 0.2757,
+        lin: 2.0,
+        nue: 0.1342,
+        sco: 0.373,
+        ing: 0.1291,
+        dep: 0.1865,
+        cs: 1.0,
+        ci: 0.998,
+        cl: 0.997,
+        comp: 0,
+        d: [0.5468, 0.4877, 0.2493, 0.2177, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1678",
+        n: "Caseros",
+        pd: "Tres de Febrero",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 98221,
+        mu: 2053,
+        md: 41767,
+        pen: 0.0209,
+        ed: 44.2,
+        dem: 0.4252,
+        hit: 0.7487,
+        thin: 0.2513,
+        lin: 2.13,
+        nue: 0.1276,
+        sco: 0.549,
+        ing: 0.2144,
+        dep: 0.279,
+        cs: 0.999,
+        ci: 0.998,
+        cl: 0.999,
+        comp: 0,
+        d: [0.2496, 0.464, 0.5251, 0.5205, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1427",
+        n: "Villa Ortúzar",
+        pd: "Comuna 15",
+        pr: "CABA",
+        amba: true,
+        hab: 78646,
+        mu: 1523,
+        md: 31293,
+        pen: 0.0194,
+        ed: 45.1,
+        dem: 0.3979,
+        hit: 0.7223,
+        thin: 0.2777,
+        lin: 2.25,
+        nue: 0.1333,
+        sco: 0.7221,
+        ing: 0.2526,
+        dep: 0.2708,
+        cs: 0.999,
+        ci: 0.998,
+        cl: 0.997,
+        comp: 0,
+        d: [0.1885, 0.2795, 0.7963, 0.6564, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1408",
+        n: "Liniers",
+        pd: "Comuna 9",
+        pr: "CABA",
+        amba: true,
+        hab: 39614,
+        mu: 4110,
+        md: 16347,
+        pen: 0.1038,
+        ed: 49.1,
+        dem: 0.4127,
+        hit: 0.7202,
+        thin: 0.2798,
+        lin: 2.22,
+        nue: 0.1406,
+        sco: 0.761,
+        ing: 0.281,
+        dep: 0.0909,
+        cs: 1.0,
+        ci: 1.0,
+        cl: 0.003,
+        comp: 0,
+        d: [0.0, 0.3791, 0.8573, 0.7572, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "8400",
+        n: "San Carlos de Bariloche",
+        pd: "Bariloche",
+        pr: "Río Negro",
+        amba: false,
+        hab: 162088,
+        mu: 5114,
+        md: 62832,
+        pen: 0.0316,
+        ed: 45.2,
+        dem: 0.3876,
+        hit: 0.7955,
+        thin: 0.2043,
+        lin: 2.68,
+        nue: 0.1913,
+        sco: 0.6117,
+        ing: 0.221,
+        dep: 0.1429,
+        cs: 0.999,
+        ci: 0.998,
+        cl: 0.003,
+        comp: 0,
+        d: [0.3873, 0.2103, 0.6234, 0.5441, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1744",
+        n: "Moreno",
+        pd: "Moreno",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 195044,
+        mu: 18787,
+        md: 84897,
+        pen: 0.0963,
+        ed: 42.1,
+        dem: 0.4353,
+        hit: 0.736,
+        thin: 0.2639,
+        lin: 1.95,
+        nue: 0.1275,
+        sco: 0.3469,
+        ing: 0.1208,
+        dep: 0.2195,
+        cs: 1.0,
+        ci: 0.998,
+        cl: 0.004,
+        comp: 0,
+        d: [0.4382, 0.5317, 0.2083, 0.1882, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1406",
+        n: "Flores",
+        pd: "Comuna 7",
+        pr: "CABA",
+        amba: true,
+        hab: 110829,
+        mu: 20627,
+        md: 40679,
+        pen: 0.1861,
+        ed: 47.4,
+        dem: 0.367,
+        hit: 0.6313,
+        thin: 0.3687,
+        lin: 1.91,
+        nue: 0.1188,
+        sco: 0.7625,
+        ing: 0.2339,
+        dep: 0.2003,
+        cs: 1.0,
+        ci: 0.998,
+        cl: 0.998,
+        comp: 0,
+        d: [0.2828, 0.0713, 0.8597, 0.59, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1712",
+        n: "Castelar",
+        pd: "Morón",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 110684,
+        mu: 7098,
+        md: 45378,
+        pen: 0.0641,
+        ed: 46.5,
+        dem: 0.41,
+        hit: 0.7299,
+        thin: 0.2701,
+        lin: 2.09,
+        nue: 0.1337,
+        sco: 0.5532,
+        ing: 0.2226,
+        dep: 0.2234,
+        cs: 0.007,
+        ci: 0.997,
+        cl: 0.997,
+        comp: 0,
+        d: [0.2825, 0.361, null, 0.5498, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1615",
+        n: "Grand Bourg",
+        pd: "Malvinas Argentinas",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 88891,
+        mu: 2183,
+        md: 41086,
+        pen: 0.0246,
+        ed: 37.2,
+        dem: 0.4622,
+        hit: 0.7407,
+        thin: 0.2593,
+        lin: 1.9,
+        nue: 0.1241,
+        sco: 0.2739,
+        ing: 0.1298,
+        dep: 0.2868,
+        cs: 0.999,
+        ci: 0.995,
+        cl: 0.997,
+        comp: 0,
+        d: [0.2222, 0.7135, 0.094, 0.22, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1686",
+        n: "Hurlingham",
+        pd: "Hurlingham",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 62040,
+        mu: 4738,
+        md: 26411,
+        pen: 0.0764,
+        ed: 45.5,
+        dem: 0.4257,
+        hit: 0.7385,
+        thin: 0.2615,
+        lin: 2.16,
+        nue: 0.1461,
+        sco: 0.5182,
+        ing: 0.1845,
+        dep: 0.1667,
+        cs: 1.0,
+        ci: 0.997,
+        cl: 0.003,
+        comp: 0,
+        d: [0.1233, 0.4672, 0.4768, 0.4145, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1763",
+        n: "Virrey del Pino",
+        pd: "La Matanza",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 207478,
+        mu: 2202,
+        md: 91584,
+        pen: 0.0106,
+        ed: 36.0,
+        dem: 0.4414,
+        hit: 0.6703,
+        thin: 0.3297,
+        lin: 1.46,
+        nue: 0.0763,
+        sco: 0.2139,
+        ing: 0.0678,
+        dep: 0.1752,
+        cs: 1.0,
+        ci: 0.998,
+        cl: 0.998,
+        comp: 0,
+        d: [0.4552, 0.5732, 0.0, 0.0, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1653",
+        n: "Villa Ballester",
+        pd: "General San Martín",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 40005,
+        mu: 1768,
+        md: 16722,
+        pen: 0.0442,
+        ed: 42.5,
+        dem: 0.418,
+        hit: 0.7212,
+        thin: 0.2788,
+        lin: 2.06,
+        nue: 0.1222,
+        sco: 0.5878,
+        ing: 0.2216,
+        dep: 0.2707,
+        cs: 0.999,
+        ci: 0.995,
+        cl: 0.997,
+        comp: 0,
+        d: [0.0027, 0.4151, 0.5859, 0.5462, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1617",
+        n: "General Pacheco",
+        pd: "Tigre",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 57183,
+        mu: 2021,
+        md: 24927,
+        pen: 0.0353,
+        ed: 39.6,
+        dem: 0.4359,
+        hit: 0.7135,
+        thin: 0.2865,
+        lin: 1.91,
+        nue: 0.1212,
+        sco: 0.4176,
+        ing: 0.1832,
+        dep: 0.2859,
+        cs: 1.0,
+        ci: 0.997,
+        cl: 0.995,
+        comp: 0,
+        d: [0.1009, 0.5361, 0.3192, 0.4099, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1852",
+        n: "Burzaco",
+        pd: "Almirante Brown",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 92915,
+        mu: 2107,
+        md: 38983,
+        pen: 0.0227,
+        ed: 39.8,
+        dem: 0.4196,
+        hit: 0.6944,
+        thin: 0.3056,
+        lin: 1.81,
+        nue: 0.1068,
+        sco: 0.4501,
+        ing: 0.1423,
+        dep: 0.238,
+        cs: 1.0,
+        ci: 0.997,
+        cl: 0.995,
+        comp: 0,
+        d: [0.2344, 0.4257, 0.3702, 0.2646, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1609",
+        n: "Boulogne",
+        pd: "San Isidro",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 76254,
+        mu: 1692,
+        md: 31096,
+        pen: 0.0222,
+        ed: 40.9,
+        dem: 0.4078,
+        hit: 0.7134,
+        thin: 0.2866,
+        lin: 1.92,
+        nue: 0.1105,
+        sco: 0.5041,
+        ing: 0.1888,
+        dep: 0.2761,
+        cs: 1.0,
+        ci: 0.999,
+        cl: 0.998,
+        comp: 0,
+        d: [0.18, 0.3463, 0.4548, 0.4295, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1875",
+        n: "Wilde",
+        pd: "Avellaneda",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 87414,
+        mu: 1503,
+        md: 34198,
+        pen: 0.0172,
+        ed: 43.7,
+        dem: 0.3912,
+        hit: 0.6933,
+        thin: 0.3067,
+        lin: 1.82,
+        nue: 0.1018,
+        sco: 0.5652,
+        ing: 0.1858,
+        dep: 0.243,
+        cs: 0.999,
+        ci: 0.999,
+        cl: 0.999,
+        comp: 0,
+        d: [0.2176, 0.2344, 0.5506, 0.4189, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1752",
+        n: "Lomas del Mirador",
+        pd: "La Matanza",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 60675,
+        mu: 1597,
+        md: 24506,
+        pen: 0.0263,
+        ed: 43.4,
+        dem: 0.4039,
+        hit: 0.6882,
+        thin: 0.3118,
+        lin: 1.69,
+        nue: 0.1021,
+        sco: 0.5548,
+        ing: 0.1662,
+        dep: 0.2254,
+        cs: 1.0,
+        ci: 0.998,
+        cl: 0.997,
+        comp: 0,
+        d: [0.1172, 0.3199, 0.5342, 0.3496, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1613",
+        n: "Los Polvorines",
+        pd: "Malvinas Argentinas",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 63293,
+        mu: 1993,
+        md: 27724,
+        pen: 0.0315,
+        ed: 38.8,
+        dem: 0.438,
+        hit: 0.723,
+        thin: 0.277,
+        lin: 1.93,
+        nue: 0.1049,
+        sco: 0.3131,
+        ing: 0.1491,
+        dep: 0.2645,
+        cs: 1.0,
+        ci: 0.996,
+        cl: 0.996,
+        comp: 0,
+        d: [0.1288, 0.5504, 0.1554, 0.2887, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1425",
+        n: "Palermo",
+        pd: "Comuna 14",
+        pr: "CABA",
+        amba: true,
+        hab: 81349,
+        mu: 24311,
+        md: 30795,
+        pen: 0.2988,
+        ed: 49.9,
+        dem: 0.3786,
+        hit: 0.7097,
+        thin: 0.2903,
+        lin: 2.34,
+        nue: 0.1319,
+        sco: 0.8521,
+        ing: 0.1683,
+        dep: 0.2072,
+        cs: 1.0,
+        ci: 0.004,
+        cl: 0.998,
+        comp: 2,
+        d: [0.1978, 0.1489, 1.0, null, 0.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1828",
+        n: "Banfield",
+        pd: "Lomas de Zamora",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 61072,
+        mu: 19210,
+        md: 25185,
+        pen: 0.3145,
+        ed: 43.9,
+        dem: 0.4124,
+        hit: 0.6822,
+        thin: 0.3178,
+        lin: 1.83,
+        nue: 0.1209,
+        sco: 0.458,
+        ing: 0.1433,
+        dep: 0.1728,
+        cs: 1.0,
+        ci: 0.998,
+        cl: 0.004,
+        comp: 0,
+        d: [0.119, 0.3773, 0.3825, 0.268, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1716",
+        n: "Libertad",
+        pd: "Merlo",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 117049,
+        mu: 2245,
+        md: 49583,
+        pen: 0.0192,
+        ed: 38.3,
+        dem: 0.4236,
+        hit: 0.6904,
+        thin: 0.3096,
+        lin: 1.66,
+        nue: 0.0976,
+        sco: 0.2684,
+        ing: 0.0987,
+        dep: 0.1881,
+        cs: 0.999,
+        ci: 0.998,
+        cl: 0.997,
+        comp: 0,
+        d: [0.2978, 0.453, 0.0854, 0.1095, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "1881",
+        n: "San Francisco Solano",
+        pd: "Quilmes",
+        pr: "Buenos Aires",
+        amba: true,
+        hab: 93568,
+        mu: 1862,
+        md: 39598,
+        pen: 0.0199,
+        ed: 39.9,
+        dem: 0.4232,
+        hit: 0.6837,
+        thin: 0.3163,
+        lin: 1.74,
+        nue: 0.0967,
+        sco: 0.261,
+        ing: 0.1052,
+        dep: 0.2087,
+        cs: 1.0,
+        ci: 0.995,
+        cl: 0.996,
+        comp: 0,
+        d: [0.2363, 0.4503, 0.0738, 0.1329, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+      {
+        cp: "9100",
+        n: "Trelew",
+        pd: "Rawson",
+        pr: "Chubut",
+        amba: false,
+        hab: 145763,
+        mu: 1958,
+        md: 51962,
+        pen: 0.0134,
+        ed: 40.6,
+        dem: 0.3565,
+        hit: 0.7441,
+        thin: 0.2559,
+        lin: 2.18,
+        nue: 0.0965,
+        sco: 0.4589,
+        ing: 0.135,
+        dep: 0.1786,
+        cs: 0.999,
+        ci: 0.998,
+        cl: 0.998,
+        comp: 0,
+        d: [0.3582, 0.0, 0.3839, 0.2387, 1.0],
+        sel: 0,
+        ola: 0,
+        mes: 0,
+      },
+    ],
+    totales: {
+      hab: 12477195,
+      mu: 674546,
+      md: 5364634,
+      plazas: 47,
+      amba_plazas: 29,
+      amba_hab: 3683445,
+      comp: 6,
+      comp_plazas: 5,
+      completas: 29,
+    },
+    dims: [
+      {
+        k: "mercado",
+        l: "Tamaño de mercado",
+        d: "Población del censo 2022, en escala logarítmica",
+        w: 30,
+      },
+      {
+        k: "demanda",
+        l: "Demanda activa",
+        d: "% que pidió financiamiento en los últimos 12 meses",
+        w: 30,
+      },
+      {
+        k: "calidad",
+        l: "Calidad de cartera",
+        d: "% con score de riesgo alto o medio-alto",
+        w: 20,
+      },
+      {
+        k: "ingreso",
+        l: "Poder adquisitivo",
+        d: "% en categoría de ingreso alto o medio-alto",
+        w: 12,
+      },
+      {
+        k: "competencia",
+        l: "Aire competitivo",
+        d: "Inverso de la cantidad de sucursales rivales",
+        w: 8,
+      },
+    ],
+    escenarios: [
+      { l: "Base", w: [30, 30, 20, 12, 8] },
+      { l: "Prioriza tamaño", w: [50, 20, 15, 10, 5] },
+      { l: "Prioriza demanda", w: [20, 50, 15, 10, 5] },
+      { l: "Prioriza calidad", w: [20, 20, 40, 15, 5] },
+      { l: "Solo universales", w: [50, 50, 0, 0, 0] },
+    ],
+  };
+  const P = D.plazas,
+    T = D.totales,
+    DIMS = D.dims;
+  const fmt = new Intl.NumberFormat("es-AR");
+  const n0 = (v) => fmt.format(Math.round(v));
+  const pc = (v, d = 1) =>
+    v == null ? "—" : (v * 100).toFixed(d).replace(".", ",") + "%";
+  const col = (p) => (p.amba ? "var(--amba)" : "var(--inter)");
+  let W = DIMS.map((d) => d.w);
 
-/* ---------- indice ---------- */
-function idx(p, w){
-  let num=0, den=0, tot=0;
-  for(let i=0;i<5;i++){ tot+=w[i]; if(p.d[i]!=null && w[i]>0){ num+=w[i]*p.d[i]; den+=w[i]; } }
-  return { v: den? num/den : 0, conf: tot? den/tot : 0 };
-}
-const ranked = w => P.map(p=>({p, ...idx(p,w)})).sort((a,b)=>b.v-a.v);
+  /* ---------- indice ---------- */
+  function idx(p, w) {
+    let num = 0,
+      den = 0,
+      tot = 0;
+    for (let i = 0; i < 5; i++) {
+      tot += w[i];
+      if (p.d[i] != null && w[i] > 0) {
+        num += w[i] * p.d[i];
+        den += w[i];
+      }
+    }
+    return { v: den ? num / den : 0, conf: tot ? den / tot : 0 };
+  }
+  const ranked = (w) =>
+    P.map((p) => ({ p, ...idx(p, w) })).sort((a, b) => b.v - a.v);
 
-/* ---------- KPIs ---------- */
-const KPI = [
-  ['Plazas candidatas','47','12,48 M de habitantes'],
-  ['Recomendación','6 sucursales','en 12 meses, en tres olas'],
-  ['Mercado alcanzado','42%','del direccionable de las 47'],
-  ['Competencia','6 sucursales','42 de 47 plazas sin rival']
-];
-const KPI2 = [
-  ['Primera apertura','Córdoba','mes 1 · 680.450 de mercado'],
-  ['Núcleo robusto','4 plazas','entran en todo escenario de pesos'],
-  ['Mercado sin historial','26,7%','THIN: el cliente natural de una fintech'],
-  ['Gate de la ola 2','Mes 6','activaciones y mora temprana']
-];
-const kpiHTML = a => a.map(([k,v,d])=>`<div class="kpi"><div class="k">${k}</div><div class="v">${v}</div><div class="d">${d}</div></div>`).join('');
-kpis.innerHTML = kpiHTML(KPI); kpis2.innerHTML = kpiHTML(KPI2);
+  /* ---------- KPIs ---------- */
+  const KPI = [
+    ["Plazas candidatas", "47", "12,48 M de habitantes"],
+    ["Recomendación", "6 sucursales", "en 12 meses, en tres olas"],
+    ["Mercado alcanzado", "42%", "del direccionable de las 47"],
+  ];
+  const KPI2 = [
+    ["Primera apertura", "Córdoba", "mes 1 · 680.450 de mercado"],
+    [
+      "Mercado sin historial",
+      "26,7%",
+      "THIN: el cliente natural de una fintech",
+    ],
+    ["Gate de la ola 2", "Mes 6", "activaciones y mora temprana"],
+  ];
+  const kpiHTML = (a) =>
+    a
+      .map(
+        ([k, v, d]) =>
+          `<div class="kpi"><div class="k">${k}</div><div class="v">${v}</div><div class="d">${d}</div></div>`,
+      )
+      .join("");
+  kpis.innerHTML = kpiHTML(KPI);
+  kpis2.innerHTML = kpiHTML(KPI2);
 
-/* ---------- penetración ---------- */
-(function(){
-  const s = [...P].sort((a,b)=>b.pen-a.pen), mx = s[0].pen;
-  pen.innerHTML = `<div class="bars">` + s.map(p=>{
-    const w = (p.pen/mx*100).toFixed(1);
-    return `<div class="bar"><div class="pos"></div>
+  /* ---------- penetración ---------- */
+  (function () {
+    const s = [...P].sort((a, b) => b.pen - a.pen),
+      mx = s[0].pen;
+    pen.innerHTML =
+      `<div class="bars">` +
+      s
+        .map((p) => {
+          const w = ((p.pen / mx) * 100).toFixed(1);
+          return `<div class="bar"><div class="pos"></div>
       <div class="track"><div class="fill" style="width:${w}%;background:${col(p)};opacity:.85"></div>
       <div class="lbl">${p.n}</div></div><div class="val">${pc(p.pen)}</div></div>`;
-  }).join('') + `</div>`;
-})();
+        })
+        .join("") +
+      `</div>`;
+  })();
 
-/* ---------- matriz de cobertura ---------- */
-(function(){
-  const s = [...P].sort((a,b)=> (b.cs>=.05)+(b.ci>=.05)+(b.cl>=.05) - ((a.cs>=.05)+(a.ci>=.05)+(a.cl>=.05)) || b.hab-a.hab);
-  let h = `<div class="cplab hd"></div>` + ['Ingreso','Laboral','Score'].map(r=>`<div class="rowlab">${r}</div>`).join('');
-  s.forEach(p=>{
-    h += `<div class="cplab">${p.n}</div>`
-      + [p.ci,p.cl,p.cs].map(c=>`<div class="cc ${c>=.05?'y':'n'}" title="${p.n}: ${pc(c)}"></div>`).join('');
-  });
-  cov.innerHTML = h;
-})();
+  /* ---------- matriz de cobertura ---------- */
+  (function () {
+    const s = [...P].sort(
+      (a, b) =>
+        (b.cs >= 0.05) +
+          (b.ci >= 0.05) +
+          (b.cl >= 0.05) -
+          ((a.cs >= 0.05) + (a.ci >= 0.05) + (a.cl >= 0.05)) || b.hab - a.hab,
+    );
+    let h =
+      `<div class="cplab hd"></div>` +
+      ["Ingreso", "Laboral", "Score"]
+        .map((r) => `<div class="rowlab">${r}</div>`)
+        .join("");
+    s.forEach((p) => {
+      h +=
+        `<div class="cplab">${p.n}</div>` +
+        [p.ci, p.cl, p.cs]
+          .map(
+            (c) =>
+              `<div class="cc ${c >= 0.05 ? "y" : "n"}" title="${p.n}: ${pc(c)}"></div>`,
+          )
+          .join("");
+    });
+    cov.innerHTML = h;
+  })();
 
-/* ---------- sliders + ranking ---------- */
-sliders.innerHTML = DIMS.map((d,i)=>`<div class="ctrl">
+  /* ---------- sliders + ranking ---------- */
+  sliders.innerHTML = DIMS.map(
+    (d, i) => `<div class="ctrl">
   <label for="w${i}">${d.l} <b id="wv${i}">${d.w}</b></label>
   <input type="range" id="w${i}" min="0" max="60" step="1" value="${d.w}">
-  <div class="hint">${d.d}</div></div>`).join('');
-escen.innerHTML = D.escenarios.map((e,i)=>`<button class="chip" data-e="${i}" aria-pressed="${i===0}">${e.l}</button>`).join('');
+  <div class="hint">${d.d}</div></div>`,
+  ).join("");
+  escen.innerHTML = D.escenarios
+    .map(
+      (e, i) =>
+        `<button class="chip" data-e="${i}" aria-pressed="${i === 0}">${e.l}</button>`,
+    )
+    .join("");
 
-function drawRank(){
-  const r = ranked(W), top = r.slice(0,14), mx = top[0].v || 1;
-  rank.innerHTML = top.map((o,i)=>{
-    const p=o.p, w=(o.v/mx*100).toFixed(1);
-    const cf = o.conf<1 ? ` · conf ${Math.round(o.conf*100)}%` : '';
-    return `<div class="bar"><div class="pos">${i+1}</div>
+  function drawRank() {
+    const r = ranked(W),
+      top = r.slice(0, 14),
+      mx = top[0].v || 1;
+    rank.innerHTML = top
+      .map((o, i) => {
+        const p = o.p,
+          w = ((o.v / mx) * 100).toFixed(1);
+        const cf = o.conf < 1 ? ` · conf ${Math.round(o.conf * 100)}%` : "";
+        return `<div class="bar"><div class="pos">${i + 1}</div>
       <div class="track"><div class="fill" style="width:${w}%;background:${col(p)};opacity:.85"></div>
-      <div class="lbl">${p.n}${cf}</div></div><div class="val">${o.v.toFixed(3).replace('.',',')}</div></div>`;
-  }).join('');
-  ranktitle.textContent = `Ranking · top 14 de 47 plazas · pesos actuales`;
-}
-DIMS.forEach((d,i)=>{
-  const el = document.getElementById('w'+i);
-  el.addEventListener('input', ()=>{ W[i]=+el.value; document.getElementById('wv'+i).textContent=el.value;
-    document.querySelectorAll('#escen .chip').forEach(c=>c.setAttribute('aria-pressed','false')); drawRank(); });
-});
-escen.addEventListener('click', e=>{
-  const b = e.target.closest('[data-e]'); if(!b) return;
-  W = D.escenarios[+b.dataset.e].w.slice();
-  document.querySelectorAll('#escen .chip').forEach(c=>c.setAttribute('aria-pressed','false'));
-  b.setAttribute('aria-pressed','true');
-  W.forEach((v,i)=>{ document.getElementById('w'+i).value=v; document.getElementById('wv'+i).textContent=v; });
+      <div class="lbl">${p.n}${cf}</div></div><div class="val">${o.v.toFixed(3).replace(".", ",")}</div></div>`;
+      })
+      .join("");
+    ranktitle.textContent = `Ranking · top 14 de 47 plazas · pesos actuales`;
+  }
+  DIMS.forEach((d, i) => {
+    const el = document.getElementById("w" + i);
+    el.addEventListener("input", () => {
+      W[i] = +el.value;
+      document.getElementById("wv" + i).textContent = el.value;
+      document
+        .querySelectorAll("#escen .chip")
+        .forEach((c) => c.setAttribute("aria-pressed", "false"));
+      drawRank();
+    });
+  });
+  escen.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-e]");
+    if (!b) return;
+    W = D.escenarios[+b.dataset.e].w.slice();
+    document
+      .querySelectorAll("#escen .chip")
+      .forEach((c) => c.setAttribute("aria-pressed", "false"));
+    b.setAttribute("aria-pressed", "true");
+    W.forEach((v, i) => {
+      document.getElementById("w" + i).value = v;
+      document.getElementById("wv" + i).textContent = v;
+    });
+    drawRank();
+  });
+  reset.onclick = () => {
+    W = DIMS.map((d) => d.w);
+    W.forEach((v, i) => {
+      document.getElementById("w" + i).value = v;
+      document.getElementById("wv" + i).textContent = v;
+    });
+    document
+      .querySelectorAll("#escen .chip")
+      .forEach((c, i) =>
+        c.setAttribute("aria-pressed", i === 0 ? "true" : "false"),
+      );
+    drawRank();
+  };
   drawRank();
-});
-reset.onclick = ()=>{ W = DIMS.map(d=>d.w); W.forEach((v,i)=>{ document.getElementById('w'+i).value=v; document.getElementById('wv'+i).textContent=v; });
-  document.querySelectorAll('#escen .chip').forEach((c,i)=>c.setAttribute('aria-pressed', i===0?'true':'false')); drawRank(); };
-drawRank();
 
-(function(){
-  const cnt = {};
-  D.escenarios.forEach(e=> ranked(e.w).slice(0,6).forEach(o=> cnt[o.p.n]=(cnt[o.p.n]||0)+1));
-  const core = Object.entries(cnt).filter(([,c])=>c>=4).sort((a,b)=>b[1]-a[1]);
-  robusto.innerHTML = `<b>El núcleo aguanta cualquier ponderación.</b> Probando los cinco escenarios —desde priorizar tamaño hasta usar solo las variables disponibles en las 47 plazas— estas plazas entran al top 6 en al menos cuatro de cinco: `
-    + core.map(([n,c])=>`<b>${n}</b> (${c}/5)`).join(', ')
-    + `. Que el orden interno cambie es esperable; que el conjunto no se mueva es el argumento.`;
-})();
+  (function () {
+    const cnt = {};
+    D.escenarios.forEach((e) =>
+      ranked(e.w)
+        .slice(0, 6)
+        .forEach((o) => (cnt[o.p.n] = (cnt[o.p.n] || 0) + 1)),
+    );
+    const core = Object.entries(cnt)
+      .filter(([, c]) => c >= 4)
+      .sort((a, b) => b[1] - a[1]);
+    robusto.innerHTML =
+      `<b>El núcleo aguanta cualquier ponderación.</b> Probando los cinco escenarios —desde priorizar tamaño hasta usar solo las variables disponibles en las 47 plazas— estas plazas entran al top 6 en al menos cuatro de cinco: ` +
+      core.map(([n, c]) => `<b>${n}</b> (${c}/5)`).join(", ") +
+      `. Que el orden interno cambie es esperable; que el conjunto no se mueva es el argumento.`;
+  })();
 
-/* ---------- scatter ---------- */
-let SF = {zona:'todas', cob:false};
-sfilters.innerHTML = `
+  /* ---------- scatter ---------- */
+  let SF = { zona: "todas", cob: false };
+  sfilters.innerHTML = `
   <button class="chip" data-z="todas" aria-pressed="true">Todas</button>
   <button class="chip" data-z="amba">Solo AMBA</button>
   <button class="chip" data-z="interior">Solo interior</button>
   <button class="chip" data-f="cob">Cobertura de score ≥ 50%</button>
 `;
-sfilters.addEventListener('click', e=>{
-  const b = e.target.closest('.chip'); if(!b) return;
-  if(b.dataset.z){ SF.zona=b.dataset.z; sfilters.querySelectorAll('[data-z]').forEach(c=>c.setAttribute('aria-pressed', c===b)); }
-  else { const k=b.dataset.f; SF[k]=!SF[k]; b.setAttribute('aria-pressed', SF[k]); }
-  drawScatter();
-});
-function drawScatter(){
-  const W0=880, H0=470, m={t:18,r:26,b:52,l:62};
-  let pts = P.filter(p=>p.cs>=.05);   // cobertura, no valor: un score sobre el 0,5% de la plaza no es un punto
-  const fuera = P.filter(p=>p.cs<.05).length;
-  if(SF.zona==='amba') pts=pts.filter(p=>p.amba);
-  if(SF.zona==='interior') pts=pts.filter(p=>!p.amba);
-  if(SF.cob) pts=pts.filter(p=>p.cs>=.5);
-  const xd=[.34,.52], yd=[.18,.90];
-  const X=v=>m.l+(v-xd[0])/(xd[1]-xd[0])*(W0-m.l-m.r);
-  const Y=v=>H0-m.b-(v-yd[0])/(yd[1]-yd[0])*(H0-m.t-m.b);
-  const R=h=>4+Math.sqrt(h/1505250)*26;
-  let g='';
-  for(let v=.35; v<=.52; v+=.05) g+=`<line class="gridline" x1="${X(v)}" y1="${m.t}" x2="${X(v)}" y2="${H0-m.b}"/><text class="axtxt" x="${X(v)}" y="${H0-m.b+18}" text-anchor="middle">${Math.round(v*100)}%</text>`;
-  for(let v=.2; v<=.9; v+=.1) g+=`<line class="gridline" x1="${m.l}" y1="${Y(v)}" x2="${W0-m.r}" y2="${Y(v)}"/><text class="axtxt" x="${m.l-10}" y="${Y(v)+4}" text-anchor="end">${Math.round(v*100)}%</text>`;
-  const ord=[...pts].sort((a,b)=>b.hab-a.hab);
-  const marks = ord.map(p=>`<circle cx="${X(p.dem)}" cy="${Y(p.sco)}" r="${R(p.hab)}" fill="${col(p)}" fill-opacity=".55" stroke="${col(p)}" stroke-width="1"><title>${p.n} — ${n0(p.hab)} hab · demanda ${pc(p.dem)} · score bueno ${pc(p.sco)} · cobertura ${pc(p.cs)}</title></circle>`).join('');
-  const labs = ord.filter(p=>p.hab>600000||p.sco>.83||p.dem>.49||p.dem<.37).map(p=>`<text class="ptlab" x="${X(p.dem)}" y="${Y(p.sco)-R(p.hab)-6}" text-anchor="middle">${p.n}</text>`).join('');
-  scatter.innerHTML = `<svg viewBox="0 0 ${W0} ${H0}" role="img" aria-label="Dispersión de las plazas: demanda de crédito contra calidad de cartera, tamaño por población.">
+  sfilters.addEventListener("click", (e) => {
+    const b = e.target.closest(".chip");
+    if (!b) return;
+    if (b.dataset.z) {
+      SF.zona = b.dataset.z;
+      sfilters
+        .querySelectorAll("[data-z]")
+        .forEach((c) => c.setAttribute("aria-pressed", c === b));
+    } else {
+      const k = b.dataset.f;
+      SF[k] = !SF[k];
+      b.setAttribute("aria-pressed", SF[k]);
+    }
+    drawScatter();
+  });
+  function drawScatter() {
+    const W0 = 880,
+      H0 = 470,
+      m = { t: 18, r: 26, b: 52, l: 62 };
+    let pts = P.filter((p) => p.cs >= 0.05); // cobertura, no valor: un score sobre el 0,5% de la plaza no es un punto
+    const fuera = P.filter((p) => p.cs < 0.05).length;
+    if (SF.zona === "amba") pts = pts.filter((p) => p.amba);
+    if (SF.zona === "interior") pts = pts.filter((p) => !p.amba);
+    if (SF.cob) pts = pts.filter((p) => p.cs >= 0.5);
+    const xd = [0.34, 0.52],
+      yd = [0.18, 0.9];
+    const X = (v) => m.l + ((v - xd[0]) / (xd[1] - xd[0])) * (W0 - m.l - m.r);
+    const Y = (v) =>
+      H0 - m.b - ((v - yd[0]) / (yd[1] - yd[0])) * (H0 - m.t - m.b);
+    const R = (h) => 4 + Math.sqrt(h / 1505250) * 26;
+    let g = "";
+    for (let v = 0.35; v <= 0.52; v += 0.05)
+      g += `<line class="gridline" x1="${X(v)}" y1="${m.t}" x2="${X(v)}" y2="${H0 - m.b}"/><text class="axtxt" x="${X(v)}" y="${H0 - m.b + 18}" text-anchor="middle">${Math.round(v * 100)}%</text>`;
+    for (let v = 0.2; v <= 0.9; v += 0.1)
+      g += `<line class="gridline" x1="${m.l}" y1="${Y(v)}" x2="${W0 - m.r}" y2="${Y(v)}"/><text class="axtxt" x="${m.l - 10}" y="${Y(v) + 4}" text-anchor="end">${Math.round(v * 100)}%</text>`;
+    const ord = [...pts].sort((a, b) => b.hab - a.hab);
+    const marks = ord
+      .map(
+        (p) =>
+          `<circle cx="${X(p.dem)}" cy="${Y(p.sco)}" r="${R(p.hab)}" fill="${col(p)}" fill-opacity=".55" stroke="${col(p)}" stroke-width="1"><title>${p.n} — ${n0(p.hab)} hab · demanda ${pc(p.dem)} · score bueno ${pc(p.sco)} · cobertura ${pc(p.cs)}</title></circle>`,
+      )
+      .join("");
+    const labs = ord
+      .filter(
+        (p) => p.hab > 600000 || p.sco > 0.83 || p.dem > 0.49 || p.dem < 0.37,
+      )
+      .map(
+        (p) =>
+          `<text class="ptlab" x="${X(p.dem)}" y="${Y(p.sco) - R(p.hab) - 6}" text-anchor="middle">${p.n}</text>`,
+      )
+      .join("");
+    scatter.innerHTML = `<svg viewBox="0 0 ${W0} ${H0}" role="img" aria-label="Dispersión de las plazas: demanda de crédito contra calidad de cartera, tamaño por población.">
     ${g}${marks}${labs}
-    <text class="axlab" x="${(W0+m.l-m.r)/2}" y="${H0-8}" text-anchor="middle">Demanda activa · % que pidió financiamiento en 12 meses</text>
-    <text class="axlab" transform="translate(16,${(H0-m.b+m.t)/2}) rotate(-90)" text-anchor="middle">Calidad de cartera · % con score alto o medio-alto</text></svg>`;
-  scatnote.textContent = `${pts.length} plazas en pantalla. ${fuera} quedan siempre fuera del gráfico porque no tienen dato de score: no se pueden ubicar en el eje vertical sin inventarles un valor.`;
-}
-drawScatter();
+    <text class="axlab" x="${(W0 + m.l - m.r) / 2}" y="${H0 - 8}" text-anchor="middle">Demanda activa · % que pidió financiamiento en 12 meses</text>
+    <text class="axlab" transform="translate(16,${(H0 - m.b + m.t) / 2}) rotate(-90)" text-anchor="middle">Calidad de cartera · % con score alto o medio-alto</text></svg>`;
+    scatnote.textContent = `${pts.length} plazas en pantalla. ${fuera} quedan siempre fuera del gráfico porque no tienen dato de score: no se pueden ubicar en el eje vertical sin inventarles un valor.`;
+  }
+  drawScatter();
 
-/* ---------- tarjetas de las elegidas ---------- */
-const PROD = {
-  '5000':['Prendario + personal','Mayor mercado direccionable del país (680.450) y la evidencia más completa: es la única junto con Rosario donde las dos condiciones del prendario se pueden verificar. Es la plaza ancla: si el modelo funciona acá, funciona.'],
-  '2000':['Prendario + personal','Segundo mercado, mejor perfil crediticio entre las grandes (61,3%) y las dos condiciones del prendario verificadas: 20,7% de ingreso alto y 22,4% en relación de dependencia.'],
-  '8300':['Prendario','El ingreso alto más fuerte de las seis: 26,1%, medido sobre el 99,8% de la plaza. Es plaza ciega en el bloque laboral, así que el fit prendario se apoya solo en ingreso.'],
-  '3000':['Personal','Demanda por encima del promedio con perfil medio. Volumen y ticket bajo, con la operación ya aceitada por Córdoba y Rosario.'],
-  '4000':['Personal','La mejor del índice y la que peor podemos medir: sin ingreso ni score. Entra última, con piloto reducido y datos pedidos a Equifax.'],
-  '4400':['Personal','Demanda alta y perfil flojo (46,0% score bueno, sin dato de ingreso). Monto bajo, aprobación rápida, tolerancia a mora mayor.']
-};
-(function(){
-  const sel = P.filter(p=>p.sel).sort((a,b)=>a.mes-b.mes);
-  cards.innerHTML = sel.map(p=>{
-    const [prod,why] = PROD[p.cp];
-    return `<div class="card"><div class="ola">Ola ${p.ola} · mes ${p.mes}</div><h4>${p.n}</h4>
+  /* ---------- tarjetas de las elegidas ---------- */
+  const PROD = {
+    5000: [
+      "Prendario + personal",
+      "Mayor mercado direccionable del país (680.450) y la evidencia más completa: es la única junto con Rosario donde las dos condiciones del prendario se pueden verificar. Es la plaza ancla: si el modelo funciona acá, funciona.",
+    ],
+    2000: [
+      "Prendario + personal",
+      "Segundo mercado, mejor perfil crediticio entre las grandes (61,3%) y las dos condiciones del prendario verificadas: 20,7% de ingreso alto y 22,4% en relación de dependencia.",
+    ],
+    8300: [
+      "Prendario",
+      "El ingreso alto más fuerte de las seis: 26,1%, medido sobre el 99,8% de la plaza. Es plaza ciega en el bloque laboral, así que el fit prendario se apoya solo en ingreso.",
+    ],
+    3000: [
+      "Personal",
+      "Demanda por encima del promedio con perfil medio. Volumen y ticket bajo, con la operación ya aceitada por Córdoba y Rosario.",
+    ],
+    4000: [
+      "Personal",
+      "La mejor del índice y la que peor podemos medir: sin ingreso ni score. Entra última, con piloto reducido y datos pedidos a Equifax.",
+    ],
+    4400: [
+      "Personal",
+      "Demanda alta y perfil flojo (46,0% score bueno, sin dato de ingreso). Monto bajo, aprobación rápida, tolerancia a mora mayor.",
+    ],
+  };
+  (function () {
+    const sel = P.filter((p) => p.sel).sort((a, b) => a.mes - b.mes);
+    cards.innerHTML = sel
+      .map((p) => {
+        const [prod, why] = PROD[p.cp];
+        return `<div class="card"><div class="ola">Ola ${p.ola} · mes ${p.mes}</div><h4>${p.n}</h4>
       <span class="prod">${prod}</span>
-      <div class="met">${n0(p.hab)} habitantes<br>${n0(p.md)} de mercado direccionable<br>demanda ${pc(p.dem)} · score ${p.cs>=.05?pc(p.sco):'sin dato'}<br>${p.comp} competidor${p.comp===1?'':'es'}</div>
+      <div class="met">${n0(p.hab)} habitantes<br>${n0(p.md)} de mercado direccionable<br>demanda ${pc(p.dem)} · score ${p.cs >= 0.05 ? pc(p.sco) : "sin dato"}<br>${p.comp} competidor${p.comp === 1 ? "" : "es"}</div>
       <div class="why">${why}</div></div>`;
-  }).join('');
-})();
+      })
+      .join("");
+  })();
 
-/* ---------- selectores del comparador ---------- */
-const opts = [...P].sort((a,b)=>a.n.localeCompare(b.n,'es')).map(p=>`<option value="${p.cp}">${p.n} · CP ${p.cp}</option>`).join('');
-cmpA.innerHTML = opts; cmpB.innerHTML = opts;
-cmpA.value='4000'; cmpB.value='1425';
+  /* ---------- selectores del comparador ---------- */
+  const opts = [...P]
+    .sort((a, b) => a.n.localeCompare(b.n, "es"))
+    .map((p) => `<option value="${p.cp}">${p.n} · CP ${p.cp}</option>`)
+    .join("");
+  cmpA.innerHTML = opts;
+  cmpB.innerHTML = opts;
+  cmpA.value = "4000";
+  cmpB.value = "1425";
 
-/* ---------- comparador ---------- */
-const FIL = [
-  ['Población', p=>p.hab, n0, 1],
-  ['Mercado direccionable', p=>p.md, n0, 1],
-  ['Demanda 12m', p=>p.dem, v=>pc(v), 1],
-  ['Score bueno', p=>p.sco, v=>pc(v), 1],
-  ['Ingreso alto', p=>p.ing, v=>pc(v), 1],
-  ['Sin historial (THIN)', p=>p.thin, v=>pc(v), 0],
-  ['Edad media', p=>p.ed, v=>String(v).replace('.',','), 0],
-  ['Competidores', p=>p.comp, v=>String(v), -1]
-];
-function drawCmp(){
-  const a=P.find(x=>x.cp===cmpA.value), b=P.find(x=>x.cp===cmpB.value);
-  cmp.innerHTML = `<table><thead><tr><th>Indicador</th><th style="text-align:right">${a.n}</th><th style="text-align:right">${b.n}</th></tr></thead><tbody>`
-   + FIL.map(([l,f,fm,dir])=>{
-      const va=f(a), vb=f(b);
-      let ca='', cb='';
-      if(dir!==0 && va!=null && vb!=null && va!==vb){ (dir>0 ? (va>vb):(va<vb)) ? ca='win' : cb='win'; }
-      return `<tr><td>${l}</td><td class="n ${ca}">${va==null?'sin dato':fm(va)}</td><td class="n ${cb}">${vb==null?'sin dato':fm(vb)}</td></tr>`;
-    }).join('')
-   + `<tr><td>Índice (pesos actuales)</td><td class="n ${idx(a,W).v>idx(b,W).v?'win':''}">${idx(a,W).v.toFixed(3).replace('.',',')}</td><td class="n ${idx(b,W).v>idx(a,W).v?'win':''}">${idx(b,W).v.toFixed(3).replace('.',',')}</td></tr>`
-   + `<tr><td>Confianza del índice</td><td class="n">${Math.round(idx(a,W).conf*100)}%</td><td class="n">${Math.round(idx(b,W).conf*100)}%</td></tr>`
-   + `</tbody></table>`;
-}
-cmpA.onchange = drawCmp; cmpB.onchange = drawCmp; drawCmp();
+  /* ---------- comparador ---------- */
+  const FIL = [
+    ["Población", (p) => p.hab, n0, 1],
+    ["Mercado direccionable", (p) => p.md, n0, 1],
+    ["Demanda 12m", (p) => p.dem, (v) => pc(v), 1],
+    ["Score bueno", (p) => p.sco, (v) => pc(v), 1],
+    ["Ingreso alto", (p) => p.ing, (v) => pc(v), 1],
+    ["Sin historial (THIN)", (p) => p.thin, (v) => pc(v), 0],
+    ["Edad media", (p) => p.ed, (v) => String(v).replace(".", ","), 0],
+    ["Competidores", (p) => p.comp, (v) => String(v), -1],
+  ];
+  function drawCmp() {
+    const a = P.find((x) => x.cp === cmpA.value),
+      b = P.find((x) => x.cp === cmpB.value);
+    cmp.innerHTML =
+      `<table><thead><tr><th>Indicador</th><th style="text-align:right">${a.n}</th><th style="text-align:right">${b.n}</th></tr></thead><tbody>` +
+      FIL.map(([l, f, fm, dir]) => {
+        const va = f(a),
+          vb = f(b);
+        let ca = "",
+          cb = "";
+        if (dir !== 0 && va != null && vb != null && va !== vb) {
+          (dir > 0 ? va > vb : va < vb) ? (ca = "win") : (cb = "win");
+        }
+        return `<tr><td>${l}</td><td class="n ${ca}">${va == null ? "sin dato" : fm(va)}</td><td class="n ${cb}">${vb == null ? "sin dato" : fm(vb)}</td></tr>`;
+      }).join("") +
+      `<tr><td>Índice (pesos actuales)</td><td class="n ${idx(a, W).v > idx(b, W).v ? "win" : ""}">${idx(a, W).v.toFixed(3).replace(".", ",")}</td><td class="n ${idx(b, W).v > idx(a, W).v ? "win" : ""}">${idx(b, W).v.toFixed(3).replace(".", ",")}</td></tr>` +
+      `<tr><td>Confianza del índice</td><td class="n">${Math.round(idx(a, W).conf * 100)}%</td><td class="n">${Math.round(idx(b, W).conf * 100)}%</td></tr>` +
+      `</tbody></table>`;
+  }
+  cmpA.onchange = drawCmp;
+  cmpB.onchange = drawCmp;
+  drawCmp();
 
-/* ---------- olas ---------- */
-tl.innerHTML = [
-  [1,'Meses 1 a 4','Córdoba (mes 1) y Rosario (mes 3)','Las dos plazas ancla: mayor mercado direccionable del país, los tres bloques de datos completos y el menor riesgo de ejecución. Sirven de piloto operativo para el prendario, que es el trámite difícil de montar.'],
-  [2,'Meses 5 a 8','Neuquén (mes 5) y Santa Fe (mes 7)','Neuquén es la plaza con mejor combinación de ingreso alto y empleo registrado: es donde el prendario rinde más. Santa Fe aporta volumen con la operación ya rodada.'],
-  [3,'Meses 9 a 12','San Miguel de Tucumán (mes 9) y Salta (mes 11)','Las dos plazas de mayor demanda del país y las peor medidas. Entran últimas y con formato reducido: son las que más pueden rendir y las que más incertidumbre cargan.']
-].map(([n,m,q,d])=>`<div class="wave"><div class="wl">Ola ${n}<span>${m}</span></div>
-  <div><h4>${q}</h4><p>${d}</p></div></div>`).join('');
+  /* ---------- olas ---------- */
+  tl.innerHTML = [
+    [
+      1,
+      "Meses 1 a 4",
+      "Córdoba (mes 1) y Rosario (mes 3)",
+      "Las dos plazas ancla: mayor mercado direccionable del país, los tres bloques de datos completos y el menor riesgo de ejecución. Sirven de piloto operativo para el prendario, que es el trámite difícil de montar.",
+    ],
+    [
+      2,
+      "Meses 5 a 8",
+      "Neuquén (mes 5) y Santa Fe (mes 7)",
+      "Neuquén es la plaza con mejor combinación de ingreso alto y empleo registrado: es donde el prendario rinde más. Santa Fe aporta volumen con la operación ya rodada.",
+    ],
+    [
+      3,
+      "Meses 9 a 12",
+      "San Miguel de Tucumán (mes 9) y Salta (mes 11)",
+      "Las dos plazas de mayor demanda del país y las peor medidas. Entran últimas y con formato reducido: son las que más pueden rendir y las que más incertidumbre cargan.",
+    ],
+  ]
+    .map(
+      ([
+        n,
+        m,
+        q,
+        d,
+      ]) => `<div class="wave"><div class="wl">Ola ${n}<span>${m}</span></div>
+  <div><h4>${q}</h4><p>${d}</p></div></div>`,
+    )
+    .join("");
 </script>
 
-
 <script>
-(function(){
-  const slides = Array.from(document.querySelectorAll('.slide'));
-  const total = slides.length;
-  let cur = 0;
+  (function () {
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const total = slides.length;
+    let cur = 0;
 
-  const dots = document.getElementById('deckDots');
-  dots.innerHTML = slides.map((_,i)=>'<i data-i="'+i+'"></i>').join('');
-  const dotEls = Array.from(dots.children);
+    const dots = document.getElementById("deckDots");
+    dots.innerHTML = slides
+      .map((_, i) => '<i data-i="' + i + '"></i>')
+      .join("");
+    const dotEls = Array.from(dots.children);
 
-  const countEl = document.getElementById('deckCount');
-  const prevBtn = document.getElementById('deckPrev');
-  const nextBtn = document.getElementById('deckNext');
-  const progress = document.getElementById('deckProgress');
+    const countEl = document.getElementById("deckCount");
+    const prevBtn = document.getElementById("deckPrev");
+    const nextBtn = document.getElementById("deckNext");
+    const progress = document.getElementById("deckProgress");
 
-  function render(){
-    slides.forEach((s,i)=> s.classList.toggle('active', i===cur));
-    dotEls.forEach((d,i)=> d.classList.toggle('on', i===cur));
-    countEl.textContent = (cur+1)+' / '+total;
-    prevBtn.disabled = cur===0;
-    nextBtn.disabled = cur===total-1;
-    progress.style.width = ((cur+1)/total*100)+'%';
-    slides[cur].scrollTop = 0;
-    if(history && history.replaceState) history.replaceState(null,'','#slide-'+cur);
-  }
+    function render() {
+      slides.forEach((s, i) => s.classList.toggle("active", i === cur));
+      dotEls.forEach((d, i) => d.classList.toggle("on", i === cur));
+      countEl.textContent = cur + 1 + " / " + total;
+      prevBtn.disabled = cur === 0;
+      nextBtn.disabled = cur === total - 1;
+      progress.style.width = ((cur + 1) / total) * 100 + "%";
+      slides[cur].scrollTop = 0;
+      if (history && history.replaceState)
+        history.replaceState(null, "", "#slide-" + cur);
+    }
 
-  function go(i){ cur = Math.max(0, Math.min(total-1, i)); render(); }
-  window.__deckGo = go;
+    function go(i) {
+      cur = Math.max(0, Math.min(total - 1, i));
+      render();
+    }
+    window.__deckGo = go;
 
-  prevBtn.addEventListener('click', ()=>go(cur-1));
-  nextBtn.addEventListener('click', ()=>go(cur+1));
-  dots.addEventListener('click', e=>{
-    const d = e.target.closest('[data-i]'); if(!d) return;
-    go(+d.dataset.i);
-  });
+    prevBtn.addEventListener("click", () => go(cur - 1));
+    nextBtn.addEventListener("click", () => go(cur + 1));
+    dots.addEventListener("click", (e) => {
+      const d = e.target.closest("[data-i]");
+      if (!d) return;
+      go(+d.dataset.i);
+    });
 
-  document.addEventListener('keydown', e=>{
-    const tag = (document.activeElement && document.activeElement.tagName) || '';
-    const isFormEl = tag==='INPUT' || tag==='SELECT' || tag==='TEXTAREA';
-    if(e.key==='ArrowRight' || e.key==='PageDown'){ if(isFormEl && e.key==='ArrowRight') return; go(cur+1); e.preventDefault(); }
-    else if(e.key==='ArrowLeft' || e.key==='PageUp'){ if(isFormEl && e.key==='ArrowLeft') return; go(cur-1); e.preventDefault(); }
-    else if(e.key==='Home'){ go(0); e.preventDefault(); }
-    else if(e.key==='End'){ go(total-1); e.preventDefault(); }
-  });
+    document.addEventListener("keydown", (e) => {
+      const tag =
+        (document.activeElement && document.activeElement.tagName) || "";
+      const isFormEl =
+        tag === "INPUT" || tag === "SELECT" || tag === "TEXTAREA";
+      if (e.key === "ArrowRight" || e.key === "PageDown") {
+        if (isFormEl && e.key === "ArrowRight") return;
+        go(cur + 1);
+        e.preventDefault();
+      } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+        if (isFormEl && e.key === "ArrowLeft") return;
+        go(cur - 1);
+        e.preventDefault();
+      } else if (e.key === "Home") {
+        go(0);
+        e.preventDefault();
+      } else if (e.key === "End") {
+        go(total - 1);
+        e.preventDefault();
+      }
+    });
 
-  const start = location.hash.match(/^#slide-(\d+)$/);
-  if(start) cur = Math.max(0, Math.min(total-1, +start[1]));
-  render();
-})();
+    const start = location.hash.match(/^#slide-(\d+)$/);
+    if (start) cur = Math.max(0, Math.min(total - 1, +start[1]));
+    render();
+  })();
 </script>

@@ -544,11 +544,11 @@ cmpA.onchange = drawCmp; cmpB.onchange = drawCmp; drawCmp();
 
 /* ---------- olas ---------- */
 tl.innerHTML = [
-  [1,'Meses 1 a 4','Córdoba (mes 1) y Rosario (mes 3)','Las dos plazas ancla: mayor mercado direccionable del país, los tres bloques de datos completos y el menor riesgo de ejecución. Sirven de piloto operativo para el prendario, que es el trámite difícil de montar.','Gate para la ola 2 (mes 6): activaciones por sucursal en el umbral comprometido y mora temprana a 90 días por debajo del techo. Si no se cumple, la ola 2 no arranca.'],
-  [2,'Meses 5 a 8','Neuquén (mes 5) y Santa Fe (mes 7)','Neuquén es la plaza con mejor combinación de ingreso alto y empleo registrado: es donde el prendario rinde más. Santa Fe aporta volumen con la operación ya rodada.','Gate para la ola 3 (mes 8): además de los KPIs comerciales, hace falta que Equifax provea los datos de ingreso y score que hoy faltan en Tucumán y Salta.'],
-  [3,'Meses 9 a 12','San Miguel de Tucumán (mes 9) y Salta (mes 11)','Las dos plazas de mayor demanda del país y las peor medidas. Entran últimas y con formato reducido: son las que más pueden rendir y las que más incertidumbre cargan.','Contingente: si al mes 8 no hay datos nuevos, se abre solo Tucumán con un piloto de menor escala y Salta queda para el año siguiente.']
-].map(([n,m,q,d,g])=>`<div class="wave"><div class="wl">Ola ${n}<span>${m}</span></div>
-  <div><h4>${q}</h4><p>${d}</p><div class="gate"><b>Condición para avanzar.</b> ${g}</div></div></div>`).join('');
+  [1,'Meses 1 a 4','Córdoba (mes 1) y Rosario (mes 3)','Las dos plazas ancla: mayor mercado direccionable del país, los tres bloques de datos completos y el menor riesgo de ejecución. Sirven de piloto operativo para el prendario, que es el trámite difícil de montar.'],
+  [2,'Meses 5 a 8','Neuquén (mes 5) y Santa Fe (mes 7)','Neuquén es la plaza con mejor combinación de ingreso alto y empleo registrado: es donde el prendario rinde más. Santa Fe aporta volumen con la operación ya rodada.'],
+  [3,'Meses 9 a 12','San Miguel de Tucumán (mes 9) y Salta (mes 11)','Las dos plazas de mayor demanda del país y las peor medidas. Entran últimas y con formato reducido: son las que más pueden rendir y las que más incertidumbre cargan.']
+].map(([n,m,q,d])=>`<div class="wave"><div class="wl">Ola ${n}<span>${m}</span></div>
+  <div><h4>${q}</h4><p>${d}</p></div></div>`).join('');
 </script>
 
 

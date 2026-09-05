@@ -166,7 +166,6 @@
   <div class="legend">
     <span><i class="dot" style="background:var(--ok)"></i> bloque disponible</span>
     <span><i class="dot" style="background:var(--crit)"></i> plaza ciega en ese bloque</span>
-    <span style="color:var(--sel)">■ plazas elegidas</span>
   </div>
   <p class="lede" style="margin-top:26px">Solo <b>29 de las 47 plazas</b> tienen los tres bloques. Y las incompletas no son marginales: Tucumán, La Plata, Salta y Palermo están entre las más grandes del país.</p>
   <div class="note"><b>Por qué esto rompe un ranking.</b> Un índice que promedia ingreso, laboral y score compara plazas que no son comparables. Con el promedio por defecto de cualquier herramienta, el ingreso de Tucumán se calcula sobre 175 personas de 39.258 — y no aparece ningún error, ninguna alerta, ningún nulo. Sale un número presentable. Peor todavía: verificamos que esos 175 no son una muestra chica sino <b>sesgada</b> — piden 12 puntos menos de crédito que el resto de su plaza. Y mirando el ranking final es imposible distinguir una caída legítima de un artefacto de cobertura.</div>
@@ -191,7 +190,6 @@
       <div class="legend">
         <span><i class="dot" style="background:var(--amba)"></i> AMBA</span>
         <span><i class="dot" style="background:var(--inter)"></i> Interior</span>
-        <span><i class="ring"></i> plaza elegida</span>
       </div>
     </div>
   </div>
@@ -208,7 +206,6 @@
     <div class="legend">
       <span><i class="dot" style="background:var(--amba)"></i> AMBA</span>
       <span><i class="dot" style="background:var(--inter)"></i> Interior</span>
-      <span><i class="ring"></i> plaza elegida</span>
       <span style="color:var(--ink-3)">tamaño del punto = población</span>
     </div>
     <p class="lede" style="font-size:14px; margin-top:14px" id="scatnote"></p>
@@ -308,7 +305,7 @@ kpis.innerHTML = kpiHTML(KPI); kpis2.innerHTML = kpiHTML(KPI2);
   const s = [...P].sort((a,b)=>b.pen-a.pen), mx = s[0].pen;
   pen.innerHTML = `<div class="bars">` + s.map(p=>{
     const w = (p.pen/mx*100).toFixed(1);
-    return `<div class="bar${p.sel?' on':''}"><div class="pos"></div>
+    return `<div class="bar"><div class="pos"></div>
       <div class="track"><div class="fill" style="width:${w}%;background:${col(p)};opacity:.85"></div>
       <div class="lbl">${p.n}</div></div><div class="val">${pc(p.pen)}</div></div>`;
   }).join('') + `</div>`;
@@ -319,7 +316,7 @@ kpis.innerHTML = kpiHTML(KPI); kpis2.innerHTML = kpiHTML(KPI2);
   const s = [...P].sort((a,b)=> (b.cs>=.05)+(b.ci>=.05)+(b.cl>=.05) - ((a.cs>=.05)+(a.ci>=.05)+(a.cl>=.05)) || b.hab-a.hab);
   let h = `<div class="cplab hd"></div>` + ['Ingreso','Laboral','Score'].map(r=>`<div class="rowlab">${r}</div>`).join('');
   s.forEach(p=>{
-    h += `<div class="cplab${p.sel?' sel':''}">${p.n}</div>`
+    h += `<div class="cplab">${p.n}</div>`
       + [p.ci,p.cl,p.cs].map(c=>`<div class="cc ${c>=.05?'y':'n'}" title="${p.n}: ${pc(c)}"></div>`).join('');
   });
   cov.innerHTML = h;
@@ -337,12 +334,11 @@ function drawRank(){
   rank.innerHTML = top.map((o,i)=>{
     const p=o.p, w=(o.v/mx*100).toFixed(1);
     const cf = o.conf<1 ? ` · conf ${Math.round(o.conf*100)}%` : '';
-    return `<div class="bar${p.sel?' on':''}"><div class="pos">${i+1}</div>
+    return `<div class="bar"><div class="pos">${i+1}</div>
       <div class="track"><div class="fill" style="width:${w}%;background:${col(p)};opacity:.85"></div>
       <div class="lbl">${p.n}${cf}</div></div><div class="val">${o.v.toFixed(3).replace('.',',')}</div></div>`;
   }).join('');
-  const t6 = r.slice(0,6).filter(o=>o.p.sel).length;
-  ranktitle.textContent = `Ranking · top 14 de 47 — ${t6} de las 6 elegidas están en el top 6`;
+  ranktitle.textContent = `Ranking · top 14 de 47 plazas · pesos actuales`;
 }
 DIMS.forEach((d,i)=>{
   const el = document.getElementById('w'+i);
@@ -371,13 +367,13 @@ drawRank();
 })();
 
 /* ---------- scatter ---------- */
-let SF = {zona:'todas', cob:false, sel:false};
+let SF = {zona:'todas', cob:false};
 sfilters.innerHTML = `
   <button class="chip" data-z="todas" aria-pressed="true">Todas</button>
   <button class="chip" data-z="amba">Solo AMBA</button>
   <button class="chip" data-z="interior">Solo interior</button>
   <button class="chip" data-f="cob">Cobertura de score ≥ 50%</button>
-  <button class="chip" data-f="sel">Solo las elegidas</button>`;
+`;
 sfilters.addEventListener('click', e=>{
   const b = e.target.closest('.chip'); if(!b) return;
   if(b.dataset.z){ SF.zona=b.dataset.z; sfilters.querySelectorAll('[data-z]').forEach(c=>c.setAttribute('aria-pressed', c===b)); }
@@ -391,7 +387,6 @@ function drawScatter(){
   if(SF.zona==='amba') pts=pts.filter(p=>p.amba);
   if(SF.zona==='interior') pts=pts.filter(p=>!p.amba);
   if(SF.cob) pts=pts.filter(p=>p.cs>=.5);
-  if(SF.sel) pts=pts.filter(p=>p.sel);
   const xd=[.34,.52], yd=[.18,.90];
   const X=v=>m.l+(v-xd[0])/(xd[1]-xd[0])*(W0-m.l-m.r);
   const Y=v=>H0-m.b-(v-yd[0])/(yd[1]-yd[0])*(H0-m.t-m.b);
@@ -400,8 +395,8 @@ function drawScatter(){
   for(let v=.35; v<=.52; v+=.05) g+=`<line class="gridline" x1="${X(v)}" y1="${m.t}" x2="${X(v)}" y2="${H0-m.b}"/><text class="axtxt" x="${X(v)}" y="${H0-m.b+18}" text-anchor="middle">${Math.round(v*100)}%</text>`;
   for(let v=.2; v<=.9; v+=.1) g+=`<line class="gridline" x1="${m.l}" y1="${Y(v)}" x2="${W0-m.r}" y2="${Y(v)}"/><text class="axtxt" x="${m.l-10}" y="${Y(v)+4}" text-anchor="end">${Math.round(v*100)}%</text>`;
   const ord=[...pts].sort((a,b)=>b.hab-a.hab);
-  const marks = ord.map(p=>`<circle cx="${X(p.dem)}" cy="${Y(p.sco)}" r="${R(p.hab)}" fill="${col(p)}" fill-opacity="${p.sel?.85:.5}" stroke="${p.sel?'var(--sel)':col(p)}" stroke-width="${p.sel?2:1}"><title>${p.n} — ${n0(p.hab)} hab · demanda ${pc(p.dem)} · score bueno ${pc(p.sco)} · cobertura ${pc(p.cs)}</title></circle>`).join('');
-  const labs = ord.filter(p=>p.sel||p.hab>600000||p.sco>.83||p.dem>.49).map(p=>`<text class="ptlab" x="${X(p.dem)}" y="${Y(p.sco)-R(p.hab)-6}" text-anchor="middle">${p.n}</text>`).join('');
+  const marks = ord.map(p=>`<circle cx="${X(p.dem)}" cy="${Y(p.sco)}" r="${R(p.hab)}" fill="${col(p)}" fill-opacity=".55" stroke="${col(p)}" stroke-width="1"><title>${p.n} — ${n0(p.hab)} hab · demanda ${pc(p.dem)} · score bueno ${pc(p.sco)} · cobertura ${pc(p.cs)}</title></circle>`).join('');
+  const labs = ord.filter(p=>p.hab>600000||p.sco>.83||p.dem>.49||p.dem<.37).map(p=>`<text class="ptlab" x="${X(p.dem)}" y="${Y(p.sco)-R(p.hab)-6}" text-anchor="middle">${p.n}</text>`).join('');
   scatter.innerHTML = `<svg viewBox="0 0 ${W0} ${H0}" role="img" aria-label="Dispersión de las plazas: demanda de crédito contra calidad de cartera, tamaño por población.">
     ${g}${marks}${labs}
     <text class="axlab" x="${(W0+m.l-m.r)/2}" y="${H0-8}" text-anchor="middle">Demanda activa · % que pidió financiamiento en 12 meses</text>
